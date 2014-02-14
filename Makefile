@@ -1,7 +1,7 @@
 all: lib test
 
 lib:
-	$(MAKE) -c bigmat
+	$(MAKE) -C bigmat
 
 test:
-	$(MAKE) -c test
+	$(MAKE) -C test
