@@ -2,7 +2,7 @@
 # Copyright 2013 Alexandre Boucey <alexandre.boucey@alumni.univ-avignon.fr>
 FLAGS		 = -std=c++0x
 CXXFLAGS	 = -fPIC -W -Wall -Wextra -I../bigmat/headers/
-LDFLAGS		 = -l../bigmat/lib/libbigmat.so
+LDFLAGS		 = -L../bigmat/lib/ -lbigmat
 DEBUGFLAGS	 = -O0 -D _DEBUG
 RELEASEFLAGS = -O2 -D NDEBUG -combine -fwhole-program
 
@@ -17,7 +17,7 @@ VERSION = $(MAJOR).$(MINOR)
 TARGET	= $(NAME)-$(VERSION)
 SOURCES = $(shell find $(SOURCES_DIR)/ -name "*.cpp")
 HEADERS = $(shell find $(HEADERS_DIR)/ -name "*.h")
-OBJECTS = $(SRC:src/%.cpp=obj/%.o)
+OBJECTS = $(SOURCES:$(SOURCES_DIR)/%.cpp=obj/%.o)
 
 PREFIX = $(DESTDIR)/usr/local
 BINDIR = $(PREFIX)/bin

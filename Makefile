@@ -15,3 +15,4 @@ mrproper:
 	$(MAKE) -C bigmat $@
 	$(MAKE) -C test $@
 
+.PHONY: lib test clean mrproper

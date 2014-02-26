@@ -1,7 +1,7 @@
 # Makefile
 # Copyright 2013 Alexandre Boucey <alexandre.boucey@alumni.univ-avignon.fr>
-FLAGS		 = -std=c++0x
-CXXFLAGS	 = -fPIC -W -Wall -Wextra 
+FLAGS		 = -shared -fpic -std=c++0x
+CXXFLAGS	 = -fpic -W -Wall -Wextra 
 LDFLAGS		 = -shared
 DEBUGFLAGS	 = -O0 -D _DEBUG
 RELEASEFLAGS = -O2 -D NDEBUG -combine -fwhole-program
@@ -17,7 +17,7 @@ VERSION = $(MAJOR).$(MINOR)
 TARGET	= lib$(NAME).so.$(VERSION)
 SOURCES = $(shell find $(SOURCES_DIR)/ -name "*.cpp")
 HEADERS = $(shell find $(HEADERS_DIR)/ -name "*.h")
-OBJECTS = $(SRC:src/%.cpp=obj/%.o)
+OBJECTS = $(SOURCES:$(SOURCES_DIR)/%.cpp=obj/%.o)
 
 PREFIX = $(DESTDIR)/usr/local
 BINDIR = $(PREFIX)/bin
@@ -35,11 +35,11 @@ format:
 
 $(TARGET): $(OBJECTS)
 	$(CXX) $(FLAGS) $(LDFLAGS) -o lib/$@ $^
-	ln -s lib/$@ lib/lib$(NAME).so
+	ln -fs $@ lib/lib$(NAME).so
 
-obj/%.o: src/%.cpp
+obj/%.o: $(SOURCES_DIR)/%.cpp
 	-@if [ ! -d "$(shell dirname $@)" ]; then mkdir -p $(shell dirname $@); fi 
-	$(CXX) $(CXXFLAGS) -c -I$(HEADERS_DIR) -o $@ $<
+	$(CXX) $(FLAGS) $(CXXFLAGS) -c -I$(HEADERS_DIR) -o $@ $<
 
 init:
 	@echo "Using $(CXX)"
