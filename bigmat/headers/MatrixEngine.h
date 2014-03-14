@@ -5,7 +5,7 @@ template <typename T>
 class MatrixEngine
 {
 public:
-	virtual ~MatrixEngine() =0;
+	virtual ~MatrixEngine();
 	virtual T get(unsigned int, unsigned int) =0;
 	virtual void set(unsigned int, unsigned int, T) =0;
 

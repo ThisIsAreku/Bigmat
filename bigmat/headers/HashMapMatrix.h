@@ -33,6 +33,9 @@ private:
 	unsigned int width;
 	unsigned int height;
 public:
+	HashMapMatrix(){};
+	~HashMapMatrix();
+	
 	T get(unsigned int x, unsigned int y)
 	{
 		return _matrix[MatCell(x, y)];
