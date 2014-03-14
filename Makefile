@@ -14,6 +14,10 @@ clean:
 	$(MAKE) -C test $@
 	$(MAKE) -C gui $@
 
+%:
+	$(MAKE) -C bigmat $@
+	$(MAKE) -C test $@
+	$(MAKE) -C gui $@
 
 mrproper:
 	$(MAKE) -C bigmat $@

@@ -3,10 +3,10 @@
 
 class MatrixEngine;
 
-class MatrixCalc 
+class MatrixCalc
 {
-	virtual void compute() = 0;
-	virtual MatrixEngine getResult() = 0;
+    virtual void compute() = 0;
+    virtual MatrixEngine getResult() = 0;
 };
 
 
