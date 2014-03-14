@@ -2,7 +2,7 @@
 # Copyright 2013 Alexandre Boucey <alexandre.boucey@alumni.univ-avignon.fr>
 FLAGS		 = -std=c++0x
 CXXFLAGS	 = -fPIC -W -Wall -Wextra -I../bigmat/headers/
-LDFLAGS		 = -L../bigmat/lib/ -lbigmat
+LDFLAGS		 = 
 DEBUGFLAGS	 = -O0 -D _DEBUG
 RELEASEFLAGS = -O2 -D NDEBUG -combine -fwhole-program
 
