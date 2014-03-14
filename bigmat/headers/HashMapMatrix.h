@@ -38,6 +38,8 @@ private:
 	unsigned int width;
 	unsigned int height;
 public:
+	// initialise les dimensions à 0
+	HashMapMatrix() : width(0), height(0) {};
 	
 	// récupère la case à l'indexe x, y
 	// renvoit 0 si vide ou hors limite
@@ -50,10 +52,12 @@ public:
 	// agrandit la taille stocké si l'index est plus grand (extensible)
 	void set(unsigned int x, unsigned int y, T v)
 	{
-		if(x > width)
-			width = x;
-		if(y > height)
-			height = y;
+		// taille d'un tableau : index max + 1
+		if(x+1 > width)
+			width = x+1;
+		if(y+1 > height)
+			height = y+1;
+
 		_matrix[MatCell(x, y)] = v;
 	};
 
