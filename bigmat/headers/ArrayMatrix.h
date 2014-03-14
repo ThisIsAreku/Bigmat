@@ -16,11 +16,13 @@ public:
 		_width = width;
 		_height = height;
 
+		_matrix = new T[_width];
 		for (unsigned int i = 0; i < _width ; i++)
 		{
-			_matrix = new T[i];
-			for (unsigned int y = 0; y < _height; y++)
-				_matrix[i][y] = new T;
+			_matrix[i] = new T[_height];
+			for (unsigned int j = 0; j < _height; j++){
+				_matrix[i][j] = 0;
+			}
 		}
 	}
 
