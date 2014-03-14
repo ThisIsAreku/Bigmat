@@ -8,9 +8,9 @@ using namespace std;
 void dispMat(MatrixEngine<int> *m)
 {
 	cout << m->getWidth() << "x" << m->getHeight() << endl;
-	for(unsigned int i = 0; i < m->getHeight(); i++)
+	for(unsigned int j = 0; j < m->getHeight(); j++)
 	{
-		for(unsigned int j = 0; j < m->getWidth(); j++)
+		for(unsigned int i = 0; i < m->getWidth(); i++)
 		{
 			cout << m->get(i, j) << '\t';
 		}
@@ -33,8 +33,8 @@ int main()
 	m2.set(1, 0, 75);
 	m2.set(2, 0, 8);
 	m2.set(2, 1, 5);
-	m2.set(2, 2, 12);
-	
+	//m2.set(2, 2, 12);
+
 	cout << "m1" << endl;
 	dispMat(&m1);
 
@@ -44,4 +44,14 @@ int main()
 	m1 += m2;
 	cout << "m1" << endl;
 	dispMat(&m1);
+
+	secured = false;
+
+	m1 += m2;
+	cout << "m1" << endl;
+	dispMat(&m1);
+
+	m2 += m1;
+	cout << "m2" << endl;
+	dispMat(&m2);
 }
