@@ -30,6 +30,8 @@ private:
 	};
 
 	std::map <MatCell, T, compareKeyPair> _matrix;
+	unsigned int width;
+	unsigned int height;
 public:
 	T get(unsigned int x, unsigned int y)
 	{
@@ -38,8 +40,15 @@ public:
 
 	void set(unsigned int x, unsigned int y, T v)
 	{
+		if(x > width)
+			width = x;
+		if(y > height)
+			height = y;
 		_matrix[MatCell(x, y)] = v;
 	};
+
+	unsigned int getWidth(){ return width; };
+	unsigned int getHeight(){ return height; };
 
 };
 

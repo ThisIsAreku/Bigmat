@@ -8,6 +8,9 @@ public:
 	virtual ~MatrixEngine() =0;
 	virtual T get(unsigned int, unsigned int) =0;
 	virtual void set(unsigned int, unsigned int, T) =0;
+
+	virtual unsigned int getWidth() =0;
+	virtual unsigned int getHeight() =0;
 };
 
 #endif
