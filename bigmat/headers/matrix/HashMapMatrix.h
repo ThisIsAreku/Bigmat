@@ -41,6 +41,21 @@ public:
     // initialise les dimensions à 0
     HashMapMatrix() : width(0), height(0) {};
 
+    HashMapMatrix(MatrixEngine<T> &a)
+    {
+        width = 0;
+        height = 0;
+        for (unsigned int i = 0; i < a.getWidth(); ++i)
+        {
+            for (unsigned int j = 0; j < a.getHeight(); ++j)
+            {
+                T v = get(i, j);
+                if(v != 0)
+                    set(i, j, v);
+            }
+        }
+    }
+
     // récupère la case à l'indexe x, y
     // renvoit 0 si vide ou hors limite
     T get(unsigned int x, unsigned int y)
@@ -57,6 +72,18 @@ public:
             width = x + 1;
         if(y + 1 > height)
             height = y + 1;
+
+        if(v == 0)
+        {
+            if(_matrix[MatCell(x, y)] == 0)
+            {
+                return;
+            }
+            else
+            {
+                _matrix.erase(_matrix.find(MatCell(x, y)));
+            }
+        }
 
         _matrix[MatCell(x, y)] = v;
     };
