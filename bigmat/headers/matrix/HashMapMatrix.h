@@ -52,9 +52,28 @@ private:
 public:
     /** 
         * \fn HashMapMatrix()
-        * \brief Initialise les dimensions à 0
+        * \brief Constructeur initialisant les dimensions à 0
     */
     HashMapMatrix() : width(0), height(0) {};
+    
+    /** 
+        * \fn HashMapMatrix(MatrixEngine<T> &a)
+        * \brief Constructeur par copie d'une autre matrice T
+    */
+    HashMapMatrix(MatrixEngine<T> &a)
+    {
+        width = 0;
+        height = 0;
+        for (unsigned int i = 0; i < a.getWidth(); ++i)
+        {
+            for (unsigned int j = 0; j < a.getHeight(); ++j)
+            {
+                T v = get(i, j);
+                if(v != 0)
+                    set(i, j, v);
+            }
+        }
+    }
 
     /**
         * \fn get (unsigned int x, unsigned int y)
@@ -73,21 +92,39 @@ public:
     */
     void set(unsigned int x, unsigned int y, T v)
     {
-        /**
-        * \brief Taille d'un tableau : index max + 1
-        */
         if(x + 1 > width)
             width = x + 1;
         if(y + 1 > height)
             height = y + 1;
 
+        if(v == 0)
+        {
+            if(_matrix[MatCell(x, y)] == 0)
+            {
+                return;
+            }
+            else
+            {
+                _matrix.erase(_matrix.find(MatCell(x, y)));
+            }
+        }
+
         _matrix[MatCell(x, y)] = v;
     };
 
+    /**
+        * \fn getWidth()
+        * \brief Retourne la largeur de la matrice
+    */
     unsigned int getWidth()
     {
         return width;
     };
+    
+    /**
+        * \fn getHeight()
+        * \brief Retourne la haueur de la matrice
+    */
     unsigned int getHeight()
     {
         return height;

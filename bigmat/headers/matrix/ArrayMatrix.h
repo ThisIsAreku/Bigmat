@@ -7,24 +7,22 @@ template <typename T>
 class ArrayMatrix : public MatrixEngine<T>
 {
 private:
-    /**
-        * Déclaration d'un double tableau de type T
-        * (T est fait pour être nimporte quel type de donnée)
-    */
+    // Déclaration d'un double tableau de type T
+    // (T est fait pour être nimporte quel type de donnée)
     T **_matrix;
     unsigned int _width;
     unsigned int _height;
 public:
     ArrayMatrix(unsigned int width, unsigned int height)
     {
-        /**
-        	* Sauvegarde des bornes de la matrice
+        /*
+        	Sauvegarde des bornes de la matrice
         */
         _width = width;
         _height = height;
 
-        /**
-        	* Allocation de la taille passé en paramettre
+        /*
+        	Allocation de la taille passé en paramettre
         */
         _matrix = new T[_width];
         for (unsigned int i = 0; i < _width ; i++)
@@ -38,8 +36,9 @@ public:
     }
 
 
-    /**
-        * Permet de recupèrer une valuer a une adresse
+    /*
+
+    Permet de recupèrer une valuer a une adresse
     */
     T get(unsigned int x, unsigned int y)
     {
@@ -47,8 +46,8 @@ public:
             return _matrix[x][y];
         return 0;
     };
-    /**
-    	* Permet de recuperer une valeur a une adresse (x et y)
+    /*
+    	Permet de recuperer une valeur a une adresse (x et y)
     */
     void set(unsigned int x, unsigned int y, T v)
     {
@@ -56,9 +55,7 @@ public:
             _matrix[x][y] = v;
     };
 
-    /**
-        * Pemet de recupèrer les tailles de la matrice.
-    */
+    // Pemet de recupèrer les tailles de la matrice.
     unsigned int getWidth()
     {
         return _width;

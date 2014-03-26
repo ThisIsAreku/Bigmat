@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "MathMatrix.h"
-#include "HashMapMatrix.h"
+#include "matrix/HashMapMatrix.h"
 
 using namespace std;
 

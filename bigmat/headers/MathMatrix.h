@@ -1,7 +1,7 @@
 #ifndef _MATH_MATRIX_H_
 #define _MATH_MATRIX_H_
 
-#include "MatrixEngine.h"
+#include "matrix/MatrixEngine.h"
 
 // false : permet l'ajout de matrices de différentes tailles
 static bool secured = true;
