@@ -1,7 +1,7 @@
 # Makefile
 # Copyright 2013 Alexandre Boucey <alexandre.boucey@alumni.univ-avignon.fr>
-FLAGS		 = -shared -fpic -std=c++0x
-CXXFLAGS	 = -fpic -W -Wall -Wextra 
+FLAGS		 = -shared -fpic -std=c++11
+CXXFLAGS	 = -fpic -W -Wall -Wextra
 LDFLAGS		 = -shared
 DEBUGFLAGS	 = -O0 -D _DEBUG
 RELEASEFLAGS = -O2 -D NDEBUG -combine -fwhole-program
