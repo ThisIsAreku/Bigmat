@@ -4,21 +4,33 @@
 #include <map>
 #include "MatrixEngine.h"
 
-// classe qui utilise une liste de clée-valeurs. une clée est une struct MatCell(x, y), la valeur est la case de la matrice
+/**
+ * \file      HashMapMatrix.h
+ * \author    ABNP
+ * \version   1.0
+ * \date      26 Mars 2014
+ * \brief     Classe qui utilise une liste de clée-valeurs. une clée est une struct MatCell(x, y), la valeur est la case de la matrice
+ */
 template <typename T>
 class HashMapMatrix : public MatrixEngine<T>
 {
 private:
-    // la structure permet d'écrire rapidement une coordonné x,y
+    /**
+        * \struct MatCell
+        * \brief la structure permet d'écrire rapidement une coordonné x,y
+        */ 
     struct MatCell
     {
         unsigned int x;
         unsigned int y;
         MatCell(unsigned int x, unsigned int y) : x(x), y(y) {};
     };
-    // cette classe permet de comparer deux coordonnés,
-    // true si a doit etre avant b
-    // false si b doit etre avant a
+    /**
+        * \class compareKeyPair
+        * \brief Cette classe permet de comparer deux coordonnés,
+        * \true si a doit etre avant b
+        * \false si b doit etre avant a
+    */
     class compareKeyPair
     {
     public:
@@ -38,21 +50,32 @@ private:
     unsigned int width;
     unsigned int height;
 public:
-    // initialise les dimensions à 0
+    /** 
+        * \fn HashMapMatrix()
+        * \brief Initialise les dimensions à 0
+    */
     HashMapMatrix() : width(0), height(0) {};
 
-    // récupère la case à l'indexe x, y
-    // renvoit 0 si vide ou hors limite
+    /**
+        * \fn get (unsigned int x, unsigned int y)
+        * \brief Récupère la case à l'indexe x, y
+        * \details Renvoit 0 si vide ou hors limite
+    */
     T get(unsigned int x, unsigned int y)
     {
         return _matrix[MatCell(x, y)];
     };
 
-    // défini la case à l'index x, y à la valeur v
-    // agrandit la taille stocké si l'index est plus grand (extensible)
+    /** 
+        * \fn set(unsigned int x, unsigned int y, T v)
+        * \brief Défini la case à l'index x, y à la valeur v
+        * \details Agrandit la taille stocké si l'index est plus grand (extensible)
+    */
     void set(unsigned int x, unsigned int y, T v)
     {
-        // taille d'un tableau : index max + 1
+        /**
+        * \brief Taille d'un tableau : index max + 1
+        */
         if(x + 1 > width)
             width = x + 1;
         if(y + 1 > height)
