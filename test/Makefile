@@ -1,6 +1,6 @@
 # Makefile
 # Copyright 2013 Alexandre Boucey <alexandre.boucey@alumni.univ-avignon.fr>
-FLAGS		 = -std=c++0x
+FLAGS		 = -std=c++11
 CXXFLAGS	 = -fPIC -W -Wall -Wextra -I../bigmat/headers/
 LDFLAGS		 = 
 DEBUGFLAGS	 = -O0 -D _DEBUG
