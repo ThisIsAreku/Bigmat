@@ -18,7 +18,7 @@ private:
     /**
         * \struct MatCell
         * \brief la structure permet d'écrire rapidement une coordonné x,y
-        */ 
+        */
     struct MatCell
     {
         unsigned int x;
@@ -50,13 +50,13 @@ private:
     unsigned int width;
     unsigned int height;
 public:
-    /** 
+    /**
         * \fn HashMapMatrix()
         * \brief Constructeur initialisant les dimensions à 0
     */
     HashMapMatrix() : width(0), height(0) {};
-    
-    /** 
+
+    /**
         * \fn HashMapMatrix(MatrixEngine<T> &a)
         * \brief Constructeur par copie d'une autre matrice T
     */
@@ -85,7 +85,7 @@ public:
         return _matrix[MatCell(x, y)];
     };
 
-    /** 
+    /**
         * \fn set(unsigned int x, unsigned int y, T v)
         * \brief Défini la case à l'index x, y à la valeur v
         * \details Agrandit la taille stocké si l'index est plus grand (extensible)
@@ -120,7 +120,7 @@ public:
     {
         return width;
     };
-    
+
     /**
         * \fn getHeight()
         * \brief Retourne la haueur de la matrice
