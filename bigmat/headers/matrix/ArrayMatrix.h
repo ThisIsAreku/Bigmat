@@ -13,6 +13,18 @@ private:
     T *_data;
     unsigned int _width;
     unsigned int _height;
+
+    void allocation()
+    {
+        if(_matrix != NULL || _data != NULL)
+            return;
+        _matrix = new T*[_width];
+        _data = new T[_width * _height];
+        for (unsigned int i = 0; i < _width; ++i)
+        {
+            _matrix[i] = _data + (i * _height);
+        } 
+    }
 public:
     ArrayMatrix(unsigned int width, unsigned int height)
     {
@@ -25,12 +37,11 @@ public:
         /*
         	Allocation de la taille passé en paramettre
         */
-        _matrix = new T*[_width];
-        _data = new T[_width * _height];
-        for (unsigned int i = 0; i < _width; ++i)
-        {
-            _matrix[i] = _data + (i * _height);
-        }
+        _matrix = NULL;
+        _data = NULL;
+        allocation();
+
+        // remplissage avec des 0
         std::fill(_data, _data + (_width * _height), 0);
     }
 
@@ -40,20 +51,39 @@ public:
         delete [] _data;
     }
 
-    // constructeur par recopie
+    // constructeur par recopie (plus rapide que le ctor d'après qui est général)
     ArrayMatrix(ArrayMatrix &m)
     {
         _width = m._width;
         _height = m._height;
 
-        _matrix = new T*[_width];
-        _data = new T[_width * _height];
-        for (unsigned int i = 0; i < _width; ++i)
-        {
-            _matrix[i] = _data + (i * _height);
-        }
+        _matrix = NULL;
+        _data = NULL;
+        allocation();
 
+        // copie de m._data dans this->_data
         std::copy(m._data, m._data + (_width * _height), _data);
+    }
+
+    // constructeur par recopie depuis autre Engine
+    ArrayMatrix(MatrixEngine<T> &a)
+    {
+        _width = a.getWidth();
+        _height = a.getHeight();
+
+        _matrix = NULL;
+        _data = NULL;
+        allocation();
+
+        for (unsigned int i = 0; i < a.getWidth(); ++i)
+        {
+            for (unsigned int j = 0; j < a.getHeight(); ++j)
+            {
+                T v = a.get(i, j);
+                if(v != 0)
+                    set(i, j, v);
+            }
+        }
     }
 
 
