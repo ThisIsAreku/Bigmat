@@ -34,6 +34,12 @@ public:
         std::fill(_data, _data + (_width * _height), 0);
     }
 
+    ~ArrayMatrix()
+    {
+        delete [] _matrix;
+        delete [] _data;
+    }
+
 
     /*
 
