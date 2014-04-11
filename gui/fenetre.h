@@ -31,8 +31,8 @@ protected:
 
     QLineEdit *file1;
     QPushButton *parcourirFile1;
-    QString *file1Name;
-    QString *file2Name;
+    QString file1Name;
+    QString file2Name;
 
     QLineEdit *file2;
     QPushButton *parcourirFile2;
@@ -50,7 +50,9 @@ public:
 signals:
 
 public slots:
-    void parcourir();
+    void clear();
+    void setFile1Name();
+    void setFile2Name();
 };
 
 #endif // FENETRE_H

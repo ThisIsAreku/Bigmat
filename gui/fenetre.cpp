@@ -15,11 +15,9 @@ Fenetre::Fenetre() : QWidget(){
     puissanceN = new QPushButton("Mn");
     inverse = new QPushButton("1/M");
 
-    file1Name = new QString("");
     file1 = new QLineEdit;
     parcourirFile1 = new QPushButton("parcourir");
 
-    file2Name = new QString("");
     file2 = new QLineEdit;
     parcourirFile2 = new QPushButton("parcourir");
 
@@ -53,13 +51,30 @@ Fenetre::Fenetre() : QWidget(){
 
     setLayout(layout);
 
-    QObject::connect(parcourirFile1, SIGNAL(clicked()), this, SLOT(parcourir()));
+    QObject::connect(clean, SIGNAL(clicked()), this, SLOT(clear()));
+    QObject::connect(parcourirFile1, SIGNAL(clicked()), this, SLOT(setFile1Name()));
+    QObject::connect(parcourirFile2, SIGNAL(clicked()), this, SLOT(setFile2Name()));
 }
 
 Fenetre::~Fenetre(){
 
 }
 
-void Fenetre::parcourir(){
-    QString fichier = QFileDialog::getSaveFileName(this, "Enregistrer un fichier", QString(), "Images (*.png *.gif *.jpg *.jpeg)");
+void Fenetre::clear(){
+    file1Name = "";
+    file1->setText(file1Name);
+    file2Name = "";
+    file2->setText(file2Name);
+}
+
+void Fenetre::setFile1Name(){
+    QString fichier = QFileDialog::getSaveFileName(this, "Enregistrer un fichier", QString(), "Text (*.txt)");
+    file1Name = fichier;
+    file1->setText(file1Name);
+}
+
+void Fenetre::setFile2Name(){
+    QString fichier = QFileDialog::getSaveFileName(this, "Enregistrer un fichier", QString(), "Text (*.txt)");
+    file2Name = fichier;
+    file2->setText(file2Name);
 }
