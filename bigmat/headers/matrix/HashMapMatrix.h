@@ -57,25 +57,6 @@ public:
     HashMapMatrix() : width(0), height(0) {};
 
     /**
-        * \fn HashMapMatrix(MatrixEngine<T> &a)
-        * \brief Constructeur par copie d'une autre matrice T
-    */
-    HashMapMatrix(MatrixEngine<T> &a)
-    {
-        width = 0;
-        height = 0;
-        for (unsigned int i = 0; i < a.getWidth(); ++i)
-        {
-            for (unsigned int j = 0; j < a.getHeight(); ++j)
-            {
-                T v = get(i, j);
-                if(v != 0)
-                    set(i, j, v);
-            }
-        }
-    }
-
-    /**
         * \fn get (unsigned int x, unsigned int y)
         * \brief Récupère la case à l'indexe x, y
         * \details Renvoit 0 si vide ou hors limite
