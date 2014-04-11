@@ -27,6 +27,20 @@ protected:
     QPushButton *puissanceN;
     QPushButton *inverse;
 
+    // chiffres
+
+    QPushButton *one;
+    QPushButton *two;
+    QPushButton *three;
+    QPushButton *four;
+    QPushButton *five;
+    QPushButton *six;
+    QPushButton *seven;
+    QPushButton *eight;
+    QPushButton *nine;
+    QPushButton *zero;
+    QPushButton *point;
+
     //input
 
     QLineEdit *file1;
