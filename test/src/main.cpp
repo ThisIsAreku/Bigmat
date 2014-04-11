@@ -3,6 +3,7 @@
 #include "MathMatrix.h"
 #include "matrix/HashMapMatrix.h"
 #include "matrix/ArrayMatrix.h"
+#include "matrix/FileMatrix.h"
 
 using namespace std;
 
@@ -23,6 +24,8 @@ void dispMat(MatrixEngine<int> *m)
 
 int main()
 {
+    //FileMatrix<int> f1(3, 3);
+
     HashMapMatrix<int> m1;
     HashMapMatrix<int> m2;
 
