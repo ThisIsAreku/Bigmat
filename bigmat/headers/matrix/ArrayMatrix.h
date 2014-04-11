@@ -40,6 +40,22 @@ public:
         delete [] _data;
     }
 
+    // constructeur par recopie
+    ArrayMatrix(ArrayMatrix &m)
+    {
+        _width = m._width;
+        _height = m._height;
+
+        _matrix = new T*[_width];
+        _data = new T[_width * _height];
+        for (unsigned int i = 0; i < _width; ++i)
+        {
+            _matrix[i] = _data + (i * _height);
+        }
+
+        std::copy(m._data, m._data + (_width * _height), _data);
+    }
+
 
     /*
 
