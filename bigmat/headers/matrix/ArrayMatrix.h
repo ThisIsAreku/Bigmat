@@ -93,7 +93,7 @@ public:
     */
     T get(unsigned int x, unsigned int y)
     {
-        if(x < _width && y < _height && x >= 0 && y >= 0)
+        if(x < _width && y < _height)
             return _matrix[x][y];
         return 0;
     };
@@ -102,7 +102,7 @@ public:
     */
     void set(unsigned int x, unsigned int y, T v)
     {
-        if(x < _width && y < _height && x >= 0 && y >= 0)
+        if(x < _width && y < _height)
             _matrix[x][y] = v;
     };
 
