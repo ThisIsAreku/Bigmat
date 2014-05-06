@@ -15,6 +15,22 @@ Fenetre::Fenetre() : QWidget(){
     puissanceN = new QPushButton("Mn");
     inverse = new QPushButton("1/M");
 
+    // chiffres
+
+    one = new QPushButton("1");
+    two = new QPushButton("2");
+    three = new QPushButton("3");
+    four = new QPushButton("4");
+    five = new QPushButton("5");
+    six = new QPushButton("6");
+    seven = new QPushButton("7");
+    eight = new QPushButton("8");
+    nine = new QPushButton("9");
+    zero = new QPushButton("0");
+    point = new QPushButton(".");
+
+    //input
+
     file1 = new QLineEdit;
     parcourirFile1 = new QPushButton("parcourir");
 
@@ -47,6 +63,17 @@ Fenetre::Fenetre() : QWidget(){
     layout->addWidget(cube,4,8);
     layout->addWidget(inverse,5,9);
     layout->addWidget(calculate,7,7,1,3);
+    layout->addWidget(one,5,0);
+    layout->addWidget(two,5,1);
+    layout->addWidget(three,5,2);
+    layout->addWidget(four,5,3);
+    layout->addWidget(five,6,0);
+    layout->addWidget(six,6,1);
+    layout->addWidget(seven,6,2);
+    layout->addWidget(eight,6,3);
+    layout->addWidget(nine,7,0);
+    layout->addWidget(zero,7,1);
+    layout->addWidget(point,7,2);
     layout->addWidget(affichage,0,0,2,10);
 
     setLayout(layout);
