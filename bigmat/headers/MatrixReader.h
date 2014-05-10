@@ -7,12 +7,12 @@
 
 class MatrixReader{
 public:
-	static void readBoolMatrix(std::string, HashMapMatrix<bool>*);
-	static void readShortMatrix(std::string, HashMapMatrix<short>*);
-	static void readIntMatrix(std::string, HashMapMatrix<int>*);
-	static void readLongMatrix(std::string, HashMapMatrix<long>*);
-	static void readFloatMatrix(std::string, HashMapMatrix<float>*);
-	static void readDoubleMatrix(std::string, HashMapMatrix<double>*);
+	static void exportBoolMatrix(std::string, HashMapMatrix<bool>*);
+	static void exportShortMatrix(std::string, HashMapMatrix<short>*);
+	static void exportIntMatrix(std::string, HashMapMatrix<int>*);
+	static void exportLongMatrix(std::string, HashMapMatrix<long>*);
+	static void exportFloatMatrix(std::string, HashMapMatrix<float>*);
+	static void exportDoubleMatrix(std::string, HashMapMatrix<double>*);
 };
 
 #endif
