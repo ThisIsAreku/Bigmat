@@ -104,11 +104,51 @@ public:
 
     /**
         * \fn getHeight()
-        * \brief Retourne la haueur de la matrice
+        * \brief Retourne la hauteur de la matrice
     */
     unsigned int getHeight()
     {
         return height;
+    };
+
+    /**
+        * \fn setWidth()
+        * \param width Nouvelle largeur
+        * \brief Défini la largeur de la matrice
+    */
+    void setWidth(unsigned int width)
+    {
+        if(width < getWidth())
+        {
+            for (unsigned int i = width; i < getWidth(); ++i)
+            {
+                for (unsigned int j = 0; j < getHeight(); ++j)
+                {
+                    set(i, j, 0);
+                }
+            }
+        }
+        this->width = width;
+    };
+
+    /**
+        * \fn setHeight()
+        * \param height Nouvelle hauteur
+        * \brief Défini la hauteur de la matrice
+    */
+    void setHeight(unsigned int height)
+    {
+        if(height < getHeight())
+        {
+            for (unsigned int i = height; i < getHeight(); ++i)
+            {
+                for (unsigned int j = 0; j < getWidth(); ++j)
+                {
+                    set(i, j, 0);
+                }
+            }
+        }
+        this->height = height;
     };
 
 };

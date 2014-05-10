@@ -109,15 +109,61 @@ public:
             _matrix[x][y] = v;
     };
 
-    // Pemet de recupèrer les tailles de la matrice.
+    /**
+        * \fn getWidth()
+        * \brief Retourne la largeur de la matrice
+    */
     unsigned int getWidth()
     {
         return _width;
     };
+
+    /**
+        * \fn getHeight()
+        * \brief Retourne la hauteur de la matrice
+    */
     unsigned int getHeight()
     {
         return _height;
     };
+
+    /**
+        * \fn setWidth()
+        * \param width Nouvelle largeur
+        * \brief Défini la largeur de la matrice
+    */
+    void setWidth(unsigned int width)
+    {
+        if(width == getWidth())
+            return;
+
+        this->_width = width;
+
+        T * newData = new T[_width*_height];
+        std::copy(newData, newData + (_width * _height), _data);
+
+        delete [] _data;
+        delete [] _matrix;
+
+        _data = newData;
+        _matrix = new T*[_width];
+        for (unsigned int i = 0; i < _width; ++i)
+        {
+            _matrix[i] = _data + (i * _height);
+        } 
+    };
+
+    /**
+        * \fn setHeight()
+        * \param height Nouvelle hauteur
+        * \brief Défini la hauteur de la matrice
+    */
+    void setHeight(unsigned int height)
+    {
+        //@TODO
+        return;
+    };
+
 };
 
 #endif
