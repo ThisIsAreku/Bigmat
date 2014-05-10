@@ -1,10 +1,7 @@
-all: lib test gui
+all: lib test
 
 lib:
 	$(MAKE) -C bigmat
-
-gui:
-	$(MAKE) -C gui
 
 test:
 	$(MAKE) -C test
@@ -12,16 +9,13 @@ test:
 clean:
 	$(MAKE) -C bigmat $@
 	$(MAKE) -C test $@
-	$(MAKE) -C gui $@
 
 %:
 	$(MAKE) -C bigmat $@
 	$(MAKE) -C test $@
-	$(MAKE) -C gui $@
 
 mrproper:
 	$(MAKE) -C bigmat $@
 	$(MAKE) -C test $@
-	$(MAKE) -C gui $@
 
-.PHONY: lib test gui clean mrproper
+.PHONY: lib test clean mrproper
