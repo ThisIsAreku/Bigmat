@@ -75,6 +75,9 @@ public:
         _data = NULL;
         allocation();
 
+        // remplissage avec des 0
+        std::fill(_data, _data + (_width * _height), 0);
+
         for (unsigned int i = 0; i < a.getWidth(); ++i)
         {
             for (unsigned int j = 0; j < a.getHeight(); ++j)
