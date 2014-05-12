@@ -15,12 +15,11 @@ private:
 
     char id[4];
 
-    std::ofstream diff;
-    std::ofstream data;
-    std::ofstream prop;
+    std::fstream data;
 
     unsigned int _width;
     unsigned int _height;
+    unsigned long _numcell;
 
     void createFile(const char* name)
     {
@@ -30,7 +29,7 @@ private:
     }
 
 public:
-    FileMatrix(unsigned int width, unsigned int height)
+    FileMatrix(unsigned int width, unsigned int height, std::streamsize prec = 4)
     { 
         std::random_device rd;
         std::mt19937 gen(rd());
@@ -45,34 +44,32 @@ public:
         */
         _width = width;
         _height = height;
+        _numcell = _width*_height;
 
         char fname[14];
         strncpy(fname, id, 4);
-        strncpy(fname+4, "_diff.txt", 10);
-        createFile(fname);
-        diff.open(fname);
 
-        strncpy(fname+4, "_data.txt", 10);
+        strcpy(fname+4, "_data.txt");
         createFile(fname);
         data.open(fname);
+        data.precision(prec);
 
-        strncpy(fname+4, "_prop.txt", 10);
-        createFile(fname);
-        prop.open(fname);
-
-        if(!(diff && data && prop))
+        if(!data){
             std::cerr << "FAILURE" << std::endl;
+            return;
+        }
+
+        T buff = 0;
+        for (unsigned long i = 0; i < _numcell; ++i)
+        {
+            data.write(reinterpret_cast<char*>(&buff), sizeof(T));
+        }
     }
 
     ~FileMatrix()
     {
-        diff.flush();
         data.flush();
-        prop.flush();
-
-        diff.close();
         data.close();
-        prop.close();
     }
 
 
@@ -82,15 +79,18 @@ public:
     */
     T get(unsigned int x, unsigned int y)
     {
-        
-        return 0;
+        data.seekg((x*_width+y)*sizeof(T));
+        T v;
+        data.read(reinterpret_cast<char*>(&v), sizeof(T));
+        return v;
     };
     /*
     	Permet de recuperer une valeur a une adresse (x et y)
     */
     void set(unsigned int x, unsigned int y, T v)
     {
-        
+        data.seekp((x*_width+y)*sizeof(T));
+        data.write(reinterpret_cast<char*>(&v), sizeof(T));
     };
 
     // Pemet de recupèrer les tailles de la matrice.
@@ -101,6 +101,28 @@ public:
     unsigned int getHeight()
     {
         return _height;
+    };
+
+    /**
+        * \fn setWidth()
+        * \param width Nouvelle largeur
+        * \brief Défini la largeur de la matrice
+    */
+    void setWidth(unsigned int width)
+    {
+        if(width < getWidth())
+            _width = width;
+    };
+
+    /**
+        * \fn setHeight()
+        * \param height Nouvelle hauteur
+        * \brief Défini la hauteur de la matrice
+    */
+    void setHeight(unsigned int height)
+    {
+        if(height < getHeight())
+            _height = height;
     };
 };
 
