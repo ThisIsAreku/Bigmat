@@ -49,6 +49,8 @@ Fenetre::Fenetre() : QWidget(){
     affichage->setMinimumWidth(350);
     affichage->setMinimumHeight(250);
     affichage->setStyleSheet("QLabel { background-color : white; border-radius: 5px; }");
+    operande = new QString("");
+    TextShow = new QString("");
 
     //layout
     layout->addWidget(file1,3,0,1,6);
@@ -80,6 +82,8 @@ Fenetre::Fenetre() : QWidget(){
 
     setLayout(layout);
 
+    parcourirFile2->hide();
+
     QObject::connect(clean, SIGNAL(clicked()), this, SLOT(clear()));
     QObject::connect(parcourirFile1, SIGNAL(clicked()), this, SLOT(setFile1Name()));
     QObject::connect(parcourirFile2, SIGNAL(clicked()), this, SLOT(setFile2Name()));
@@ -94,16 +98,36 @@ void Fenetre::clear(){
     file1->setText(file1Name);
     file2Name = "";
     file2->setText(file2Name);
+    TextShow->setText("");
+    affichage->setText(TextShow);
+
 }
 
 void Fenetre::setFile1Name(){
     QString fichier = QFileDialog::getSaveFileName(this, "Enregistrer un fichier", QString(), "Text (*.txt)");
     file1Name = fichier;
     file1->setText(file1Name);
+    setAffichage();
 }
 
 void Fenetre::setFile2Name(){
     QString fichier = QFileDialog::getSaveFileName(this, "Enregistrer un fichier", QString(), "Text (*.txt)");
     file2Name = fichier;
     file2->setText(file2Name);
+    setAffichage();
 }
+
+void Fenetre::setAffichage(){
+    TextShow->setText("");
+    if(file1Name != ""){
+        TextShow += "A";
+        if(operande != ""){
+            TextShow += operande;
+            if(file2Name != ""){
+               TextShow += "B";
+            }
+        }
+    }
+    affichage->setText(TextShow);
+}
+

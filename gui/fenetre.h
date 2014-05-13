@@ -57,6 +57,8 @@ protected:
 
     //affichage
     QLabel *affichage;
+    QString *TextShow;
+    QString *operande;
 
 public:
     Fenetre();
@@ -68,6 +70,7 @@ public slots:
     void clear();
     void setFile1Name();
     void setFile2Name();
+    void setAffichage();
 };
 
 #endif // FENETRE_H
