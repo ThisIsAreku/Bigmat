@@ -26,6 +26,7 @@ protected:
     QPushButton *cube;
     QPushButton *puissanceN;
     QPushButton *inverse;
+    QPushButton * transpo;
 
     // chiffres
 

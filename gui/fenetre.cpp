@@ -14,6 +14,7 @@ Fenetre::Fenetre() : QWidget(){
     cube = new QPushButton("M³");
     puissanceN = new QPushButton("Mn");
     inverse = new QPushButton("1/M");
+    transpo = new QPushButton("T");
 
     // chiffres
 
@@ -55,6 +56,7 @@ Fenetre::Fenetre() : QWidget(){
     layout->addWidget(file2,4,0,1,6);
     layout->addWidget(parcourirFile2,4,6);
     layout->addWidget(clean,3,7);
+    layout->addWidget(transpo,3,8);
     layout->addWidget(plus,6,7);
     layout->addWidget(moin,6,8);
     layout->addWidget(fois,5,7);
