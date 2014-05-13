@@ -1,13 +1,15 @@
 #include <iostream>
 
 #include "MathMatrix.h"
+#include "MatrixReader.h"
 #include "matrix/HashMapMatrix.h"
 #include "matrix/ArrayMatrix.h"
 #include "matrix/FileMatrix.h"
 
 using namespace std;
 
-void dispMat(MatrixEngine<int> *m)
+template <typename T>
+void dispMat(MatrixEngine<T> *m)
 {
     cout << m->getWidth() << "x" << m->getHeight() << endl;
     cout << "Pointer: " << m << endl;
@@ -86,4 +88,10 @@ int main()
     ArrayMatrix<int> a3(m3);
     cout << "recopie a3 = m3" << endl;
     dispMat(&a3);
+
+
+    HashMapMatrix<long> im1;
+    cout << "im1 short" << endl;
+    MatrixReader::readLongMatrix("mat.dat", &im1);
+    dispMat(&im1);
 }

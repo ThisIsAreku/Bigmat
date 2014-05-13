@@ -1,9 +1,9 @@
 # Makefile
 # Copyright 2013 Alexandre Boucey <alexandre.boucey@alumni.univ-avignon.fr>
 FLAGS		 = 
-CXXFLAGS	 = -std=c++11 -fPIC -W -Wall -Wextra -I../bigmat/headers/
-LDFLAGS		 = 
-DEBUGFLAGS	 = -O0 -D _DEBUG
+CXXFLAGS	 = -std=c++11 -fPIC -W -Wall -Wextra -Wno-unused-parameter -I../bigmat/headers/
+LDFLAGS		 = -L../bigmat/lib/ -lbigmat
+DEBUGFLAGS	 = -O0 -D _DEBUG -g
 RELEASEFLAGS = -O2 -D NDEBUG -combine -fwhole-program
 
 SOURCES_DIR	 = src
@@ -24,7 +24,7 @@ BINDIR = $(PREFIX)/bin
 
 all: init compile
 
-debug: CXXFLAGS+= -g
+debug: CXXFLAGS+= $(DEBUGFLAGS)
 debug: init compile
 
 build: $(OBJECTS)

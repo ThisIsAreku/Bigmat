@@ -10,6 +10,9 @@ public:
 
     virtual unsigned int getWidth() = 0;
     virtual unsigned int getHeight() = 0;
+
+    virtual void setWidth(unsigned int) = 0;
+    virtual void setHeight(unsigned int) = 0;
 };
 
 #endif

@@ -98,9 +98,9 @@ MatrixEngine<K> &operator *=(MatrixEngine<K> &a, MatrixEngine<K> &b){
     K tmp =0;
     K value = 0;
     
-    for(unsigned int i = 0; j < maxHeight; i++;){
-        for(unsigned int j = 0; i < maxWidth; j++){
-            for(unsigned int k = 0; j < maxHeight; k++){
+    for(unsigned int i = 0; i < maxHeight; i++){
+        for(unsigned int j = 0; j < maxWidth; j++){
+            for(unsigned int k = 0; k < maxHeight; k++){
                 tmp = a.get(k,i) + b.get(j,k);
                 value += tmp;
             }
