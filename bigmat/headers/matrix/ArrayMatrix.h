@@ -4,6 +4,12 @@
 
 template <typename T>
 
+/**
+   * \file ArrayMatrix.h
+   * \author ABNP
+   * \date 13 Mai 2014
+*/
+
 class ArrayMatrix : public MatrixEngine<T>
 {
 private:
@@ -28,20 +34,25 @@ private:
 public:
     ArrayMatrix(unsigned int width, unsigned int height)
     {
-        /*
-        	Sauvegarde des bornes de la matrice
+        /**
+        	* \brief Sauvegarde des bornes de la matrice.
         */
+
         _width = width;
         _height = height;
 
-        /*
-        	Allocation de la taille passé en paramettre
+        /**
+        	* \brief Allocation de la taille passé en paramettre.
         */
+
         _matrix = NULL;
         _data = NULL;
         allocation();
 
-        // remplissage avec des 0
+        /**
+            * \brief Remplissage avec des 0.
+        */
+
         std::fill(_data, _data + (_width * _height), 0);
     }
 
@@ -51,7 +62,12 @@ public:
         delete [] _data;
     }
 
-    // constructeur par recopie (plus rapide que le ctor d'après qui est général)
+    /**
+        * \fn ArrayMatrix
+        * \param m Reference d'une autre ArrayMatrix
+        * \brief Constructeur par recopie (plus rapide que le constructeur qui suit qui est général).
+    */
+
     ArrayMatrix(ArrayMatrix &m)
     {
         _width = m._width;
@@ -65,7 +81,12 @@ public:
         std::copy(m._data, m._data + (_width * _height), _data);
     }
 
-    // constructeur par recopie depuis autre Engine
+    /**
+        * \fn ArrayMatrix
+        * \param a Reference d'une ArrayEngine
+        * \brief Constructeur par recopie depuis une autre Engine.
+    */
+
     ArrayMatrix(MatrixEngine<T> &a)
     {
         _width = a.getWidth();
@@ -90,19 +111,28 @@ public:
     }
 
 
-    /*
-
-    Permet de recupèrer une valuer a une adresse
+    /**
+        * \fn get
+        * \param x Entier, première coordonée de l'adresse
+        * \param y Entier, seconde coordonnée de l'adresse
+        * \brief Permet de recupèrer une valeur a une adresse donnée.
     */
+    
     T get(unsigned int x, unsigned int y)
     {
         if(x < _width && y < _height)
             return _matrix[x][y];
         return 0;
     };
-    /*
-    	Permet de recuperer une valeur a une adresse (x et y)
-    */
+
+    /**
+        * \fn set
+        * \param x Entier, première coordonée de l'adresse
+        * \param y Entier, seconde coordonnée de l'adresse
+        * \param v Nouvelle valeur a donner à l'adresse donnée
+        * \brief Permet de modifier la valeur de l'adresse donnée.
+    */  
+    
     void set(unsigned int x, unsigned int y, T v)
     {
         if(x < _width && y < _height)
@@ -111,8 +141,9 @@ public:
 
     /**
         * \fn getWidth()
-        * \brief Retourne la largeur de la matrice
+        * \brief Retourne la largeur de la matrice.
     */
+
     unsigned int getWidth()
     {
         return _width;
@@ -122,6 +153,7 @@ public:
         * \fn getHeight()
         * \brief Retourne la hauteur de la matrice
     */
+
     unsigned int getHeight()
     {
         return _height;
@@ -129,9 +161,10 @@ public:
 
     /**
         * \fn setWidth()
-        * \param width Nouvelle largeur
-        * \brief Défini la largeur de la matrice
+        * \param width Entier positif, largeur a assigner à la matrice
+        * \brief Défini la largeur de la matrice.
     */
+
     void setWidth(unsigned int width)
     {
         if(width == getWidth())
@@ -154,10 +187,11 @@ public:
     };
 
     /**
-        * \fn setHeight()
-        * \param height Nouvelle hauteur
-        * \brief Défini la hauteur de la matrice
+        * \fn setWidth()
+        * \param height Entier positif, hauteur a assigner à la matrice
+        * \brief Défini la hauteur de la matrice.
     */
+
     void setHeight(unsigned int height)
     {
         if(height == getHeight())

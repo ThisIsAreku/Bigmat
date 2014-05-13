@@ -1,6 +1,11 @@
 #include <fstream>
 #include "MatrixReader.h"
 
+/**
+   * \file MatrixReader.cpp
+   * \author ABNP
+   * \date 13 Mai 2014
+*/
 
 void MatrixReader::readFile(std::string filename, std::function<void (unsigned int, unsigned int, std::stringstream&)> callback)
 {

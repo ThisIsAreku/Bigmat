@@ -7,6 +7,12 @@
 
 #include "matrix/HashMapMatrix.h"
 
+/**
+   * \file MatrixReader.h
+   * \author ABNP
+   * \date 13 Mai 2014
+*/
+
 class MatrixReader{
 	static void readFile(std::string, std::function<void (unsigned int, unsigned int, std::stringstream&)>);
 public:

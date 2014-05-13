@@ -3,9 +3,13 @@
 
 #include "matrix/MatrixEngine.h"
 
-class MathMatrix;
+/**
+   * \file MathMatrix.h
+   * \author ABNP
+   * \date 13 Mai 2014
+ */
 
-// false : permet l'ajout de matrices de différentes tailles
+class MathMatrix;
 static bool secured = true;
 
 MatrixEngine<bool> &operator +=(MatrixEngine<bool> &a, MatrixEngine<bool> &b)
