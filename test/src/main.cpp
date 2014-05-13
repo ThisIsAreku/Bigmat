@@ -2,6 +2,7 @@
 
 #include "MathMatrix.h"
 #include "MatrixReader.h"
+#include "MatrixExport.h"
 #include "matrix/HashMapMatrix.h"
 #include "matrix/ArrayMatrix.h"
 #include "matrix/FileMatrix.h"
@@ -91,7 +92,27 @@ int main()
 
 
     HashMapMatrix<long> im1;
-    cout << "im1 short" << endl;
+    cout << "im1 long" << endl;
     MatrixReader::readLongMatrix("mat.dat", &im1);
     dispMat(&im1);
+
+    im1 += im1;
+
+
+    cout << "write long" << endl;
+    MatrixExport::exportLongMatrix("mat_out.dat", &im1);
+    cout << "write int" << endl;
+    MatrixExport::exportIntMatrix("mat_out2.dat", &a3);
+
+
+    cout << "File mat" << endl;
+    FileMatrix<int> fmat(5, 5);
+    fmat.set(0, 0, 5);
+    fmat.set(0, 3, 10);
+    fmat.set(0, 0, 6);
+    dispMat(&fmat);
+    fmat.set(4, 4, 125);
+    fmat.set(3, 4, 1);
+    fmat.set(2, 2, 65535);
+    dispMat(&fmat);
 }
