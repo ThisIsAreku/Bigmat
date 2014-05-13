@@ -229,14 +229,27 @@ public:
     template <typename K>
     MatrixEngine<k> transpose(MatrixEngine<K> &a){
         
+        
+        
         return a;
     }
     
+    /*
+     
+     La matrice doit etre carré et triangulaire
+     
+     
+    */
+    
     template <typename K>
     int det(MatrixEngine<K> &a){
-        int det = 0;
+        int det = a[0,0];
         
-        
+        if(a.getHeight ==  a.getWidth){
+            for(int i =1; i < a.getWidth; i++){
+                det *= a[i,i];
+            }
+        }
         
         return det;
     }
