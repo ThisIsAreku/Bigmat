@@ -3,7 +3,16 @@
 
 #include "matrix/MatrixEngine.h"
 
-// false : permet l'ajout de matrices de différentes tailles
+/**
+   * \file MathMatrix.h
+   * \author ABNP
+   * \date 13 Mai 2014
+*/
+
+/**
+    * \false : Permet l'ajout de matrices de différentes tailles
+*/
+
 static bool secured = true;
 
 template <typename K>
