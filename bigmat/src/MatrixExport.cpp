@@ -1,6 +1,12 @@
 #include <fstream>
 #include "MatrixExport.h"
 
+/**
+   * \file MatrixExport.cpp
+   * \author ABNP
+   * \date 13 Mai 2014
+*/
+
 bool MatrixExport::exportFile(std::string path, unsigned int w, unsigned int h, std::function<bool (unsigned int, unsigned int)> doCallback, std::function<void (std::ofstream&)> writeCallback)
 {
 	std::ofstream file(path);
