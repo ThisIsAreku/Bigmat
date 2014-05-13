@@ -61,6 +61,33 @@ MatrixEngine<K> &operator -=(MatrixEngine<K> &a, MatrixEngine<K> &b)
 }
 
 template <typename K>
+MatrixEngine<K> &operator *=(MatrixEngine<K> &a, int number)
+{
+    if(secured && (a.getWidth() != b.getWidth() || a.getHeight() != b.getHeight())){
+        return a;
+    }
+    
+    unsigned int maxWidth = a.getWidth();
+    unsigned int maxHeight = a.getHeight();
+    
+    if(!secured){
+        if(b.getWidth() > maxWidth){
+            maxWidth = b.getWidth();
+        }
+        if(b.getHeight() > maxHeight){
+            maxHeight = b.getHeight();
+        }
+    }
+    
+    for(unsigned int i = 0; i < maxWidth; i++){
+        for(unsigned int j = 0; j < maxHeight; j++){
+            a.set(i, j, a.get(i, j) * number);
+        }
+    }
+    return a;
+}
+
+template <typename K>
 MatrixEngine<K> &operator *=(MatrixEngine<K> &a, MatrixEngine<K> &b){
     unsigned int maxWidth = b.getWidth();
     unsigned int maxHeight = a.getHeight();
