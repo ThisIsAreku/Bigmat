@@ -2,6 +2,13 @@
 #define _MATRIX_ENGINE_
 
 template <typename T>
+
+/**
+   * \file MatrixEngine.h
+   * \author ABNP
+   * \date 13 Mai 2014
+*/
+
 class MatrixEngine
 {
 public:
