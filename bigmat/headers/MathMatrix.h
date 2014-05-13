@@ -10,25 +10,11 @@
  */
 
 class MathMatrix;
-static bool secured = true;
 
 MatrixEngine<bool> &operator +=(MatrixEngine<bool> &a, MatrixEngine<bool> &b)
 {
-    if(secured && (a.getWidth() != b.getWidth() || a.getHeight() != b.getHeight())){
-        return a;
-    }
-    
     unsigned int maxWidth = a.getWidth();
     unsigned int maxHeight = a.getHeight();
-    
-    if(!secured){
-        if(b.getWidth() > maxWidth){
-            maxWidth = b.getWidth();
-        }
-        if(b.getHeight() > maxHeight){
-            maxHeight = b.getHeight();
-        }
-    }
     
     for(unsigned int i = 0; i < maxWidth; i++){
         for(unsigned int j = 0; j < maxHeight; j++){
@@ -41,21 +27,9 @@ MatrixEngine<bool> &operator +=(MatrixEngine<bool> &a, MatrixEngine<bool> &b)
 template <typename K>
 MatrixEngine<K> &operator +=(MatrixEngine<K> &a, MatrixEngine<K> &b)
 {
-    if(secured && (a.getWidth() != b.getWidth() || a.getHeight() != b.getHeight())){
-        return a;
-    }
 
     unsigned int maxWidth = a.getWidth();
     unsigned int maxHeight = a.getHeight();
-
-    if(!secured){
-        if(b.getWidth() > maxWidth){
-            maxWidth = b.getWidth();
-        }
-        if(b.getHeight() > maxHeight){
-            maxHeight = b.getHeight();
-        }
-    }
 
     for(unsigned int i = 0; i < maxWidth; i++){
         for(unsigned int j = 0; j < maxHeight; j++){
@@ -73,21 +47,9 @@ MatrixEngine<bool> &operator -=(MatrixEngine<bool> &a, MatrixEngine<bool> &b)
 template <typename K>
 MatrixEngine<K> &operator -=(MatrixEngine<K> &a, MatrixEngine<K> &b)
 {
-    if(secured && (a.getWidth() != b.getWidth() || a.getHeight() != b.getHeight())){
-        return a;
-    }
     
     unsigned int maxWidth = a.getWidth();
     unsigned int maxHeight = a.getHeight();
-    
-    if(!secured){
-        if(b.getWidth() > maxWidth){
-            maxWidth = b.getWidth();
-        }
-        if(b.getHeight() > maxHeight){
-            maxHeight = b.getHeight();
-        }
-    }
     
     for(unsigned int i = 0; i < maxWidth; i++){
         for(unsigned int j = 0; j < maxHeight; j++){
@@ -101,21 +63,8 @@ MatrixEngine<K> &operator -=(MatrixEngine<K> &a, MatrixEngine<K> &b)
 template <typename K>
 MatrixEngine<K> &operator *=(MatrixEngine<K> &a, int number)
 {
-    if(secured && (a.getWidth() != b.getWidth() || a.getHeight() != b.getHeight())){
-        return a;
-    }
-    
     unsigned int maxWidth = a.getWidth();
     unsigned int maxHeight = a.getHeight();
-    
-    if(!secured){
-        if(b.getWidth() > maxWidth){
-            maxWidth = b.getWidth();
-        }
-        if(b.getHeight() > maxHeight){
-            maxHeight = b.getHeight();
-        }
-    }
     
     for(unsigned int i = 0; i < maxWidth; i++){
         for(unsigned int j = 0; j < maxHeight; j++){
@@ -196,7 +145,7 @@ MatrixEngine<K> &operator /=(MatrixEngine<K> &a, MatrixEngine<K> &b){
     return a;
 }
 
-class MathMatrix{
+/*class MathMatrix{
 public:
    
     template <typename K>
@@ -237,13 +186,12 @@ public:
         
         return a;
     }
-    
-    /*
+ 
      
-     La matrice doit etre carré et triangulaire
+    // La matrice doit etre carré et triangulaire
      
      
-    */
+
     
     template <typename K>
     int det(MatrixEngine<K> &a){
@@ -258,6 +206,6 @@ public:
         return det;
     }
 
-};
+};*/
 
 #endif
