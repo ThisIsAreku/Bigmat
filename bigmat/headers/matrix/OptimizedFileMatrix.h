@@ -9,6 +9,12 @@
 
 template <typename T>
 
+/**
+   * \file OptimizedFileMatrix.h
+   * \author ABNP
+   * \date 13 Mai 2014
+*/
+
 class FileMatrix : public MatrixEngine<T>
 {
 private:
@@ -30,6 +36,14 @@ private:
     }
 
 public:
+
+    /**
+        * \fn FileMatrix
+        * \param width Entier désignant la largeur
+        * \param height Entier désignant la hauteur
+        * \brief Constructeur du FileMatrix.
+    */
+
     FileMatrix(unsigned int width, unsigned int height)
     { 
         std::random_device rd;
@@ -64,6 +78,11 @@ public:
             std::cerr << "FAILURE" << std::endl;
     }
 
+    /**
+        * \fn ~FileMatrix
+        * \brief Destructeur du FileMatrix.
+    */
+
     ~FileMatrix()
     {
         diff.flush();
@@ -76,28 +95,50 @@ public:
     }
 
 
-    /*
-
-    Permet de recupèrer une valuer a une adresse
+    /**
+        * \fn get
+        * \param x Entier, première coordonée de l'adresse
+        * \param y Entier, seconde coordonnée de l'adresse
+        * \brief Permet de recupèrer une valeur a une adresse donnée.
     */
+    
     T get(unsigned int x, unsigned int y)
     {
-        
-        return 0;
-    };
-    /*
-    	Permet de recuperer une valeur a une adresse (x et y)
-    */
-    void set(unsigned int x, unsigned int y, T v)
-    {
-        
+        data.seekg((x*_width+y)*sizeof(T));
+        T v;
+        data.read(reinterpret_cast<char*>(&v), sizeof(T));
+        return v;
     };
 
-    // Pemet de recupèrer les tailles de la matrice.
+    /**
+        * \fn set
+        * \param x Entier, première coordonée de l'adresse
+        * \param y Entier, seconde coordonnée de l'adresse
+        * \param v Nouvelle valeur a donner à l'adresse donnée
+        * \brief Permet de modifier la valeur de l'adresse donnée.
+    */  
+
+    void set(unsigned int x, unsigned int y, T v)
+    {
+        data.seekp((x*_width+y)*sizeof(T));
+        data.write(reinterpret_cast<char*>(&v), sizeof(T));
+    };
+    
+    /**
+        * \fn getWidth()
+        * \brief Retourne la largeur de la matrice
+    */
+
     unsigned int getWidth()
     {
         return _width;
     };
+
+    /**
+        * \fn getHeight()
+        * \brief Retourne la hauteur de la matrice
+    */
+
     unsigned int getHeight()
     {
         return _height;
@@ -108,8 +149,11 @@ public:
         * \param width Nouvelle largeur
         * \brief Défini la largeur de la matrice
     */
+
     void setWidth(unsigned int width)
     {
+        if(width < getWidth())
+            _width = width;
     };
 
     /**
@@ -119,6 +163,8 @@ public:
     */
     void setHeight(unsigned int height)
     {
+        if(height < getHeight())
+            _height = height;
     };
 };
 
