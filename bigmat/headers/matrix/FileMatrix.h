@@ -61,10 +61,19 @@ public:
         _height = height;
         _numcell = _width*_height;
 
-        char fname[14];
-        strncpy(fname, id, 4);
+        char const *folder = getenv("TMPDIR");
+        if (folder == 0)
+            folder = "/tmp";
 
-        strcpy(fname+4, "_data.txt");
+        char fname[14];
+        int len = strlen(folder);
+
+        strcpy(fname, folder);
+
+        strcpy(fname+len, "/");
+        strncpy(fname+len+1, id, 4);
+
+        strcpy(fname+len+5, "_bigmat_filematrix_data.txt");
         createFile(fname);
         data.open(fname);
         data.precision(prec);
