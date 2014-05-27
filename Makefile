@@ -1,4 +1,4 @@
-all: lib test
+all: lib test doc
 
 lib:
 	$(MAKE) -C bigmat
@@ -6,16 +6,12 @@ lib:
 test:
 	$(MAKE) -C test
 
-clean:
-	$(MAKE) -C bigmat $@
-	$(MAKE) -C test $@
+doc:
+	$(MAKE) -C doc
 
 %:
 	$(MAKE) -C bigmat $@
 	$(MAKE) -C test $@
+	$(MAKE) -C doc $@
 
-mrproper:
-	$(MAKE) -C bigmat $@
-	$(MAKE) -C test $@
-
-.PHONY: lib test clean mrproper
+.PHONY: lib test doc clean mrproper
