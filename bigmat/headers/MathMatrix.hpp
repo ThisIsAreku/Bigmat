@@ -1,7 +1,7 @@
 #ifndef _MATH_MATRIX_H_
 #define _MATH_MATRIX_H_
 
-#include "matrix/MatrixEngine.h"
+#include "matrix/MatrixEngine.hpp"
 
 /**
    * \file MathMatrix.h
@@ -9,6 +9,11 @@
    * \date 13 Mai 2014
  */
 
+
+/**
+    * \class     MathMatrix
+    * \brief     Calcul matriciels
+ */
 class MathMatrix{
 public:
    
@@ -26,6 +31,12 @@ public:
 
 };
 
+/**
+    * \fn +=
+    * \param a Matrice a
+    * \param b Matrice b
+    * \brief Constructeur du FileMatrix.
+*/
 MatrixEngine<bool> &operator +=(MatrixEngine<bool> &a, MatrixEngine<bool> &b)
 {
     unsigned int maxWidth = a.getWidth();

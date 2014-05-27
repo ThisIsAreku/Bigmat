@@ -1,32 +1,35 @@
-#ifndef _OPTIMIZED_FILE_MATRIX_
-#define _OPTIMIZED_FILE_MATRIX_
-#include "MatrixEngine.h"
+#ifndef _FILE_MATRIX_
+#define _FILE_MATRIX_
+#include "MatrixEngine.hpp"
 
 #include <fstream>
 #include <cstdlib>
 #include <cstring>
 #include <random>
 
-template <typename T>
-
 /**
-   * \file OptimizedFileMatrix.h
+   * \file FileMatrix.h
    * \author ABNP
    * \date 13 Mai 2014
 */
 
+/**
+    * \class     FileMatrix
+    * \tparam T  Type de donnée
+    * \brief     Classe de matrice sous la forme de Fichier
+ */
+template <typename T>
 class FileMatrix : public MatrixEngine<T>
 {
 private:
 
     char id[4];
 
-    std::ofstream diff;
-    std::ofstream data;
-    std::ofstream prop;
+    std::fstream data;
 
     unsigned int _width;
     unsigned int _height;
+    unsigned long _numcell;
 
     void createFile(const char* name)
     {
@@ -41,10 +44,11 @@ public:
         * \fn FileMatrix
         * \param width Entier désignant la largeur
         * \param height Entier désignant la hauteur
+        * \param prec Streamsize par défaut égal à 4
         * \brief Constructeur du FileMatrix.
     */
 
-    FileMatrix(unsigned int width, unsigned int height)
+    FileMatrix(unsigned int width, unsigned int height, std::streamsize prec = 4)
     { 
         std::random_device rd;
         std::mt19937 gen(rd());
@@ -59,23 +63,35 @@ public:
         */
         _width = width;
         _height = height;
+        _numcell = _width*_height;
+
+        char const *folder = getenv("TMPDIR");
+        if (folder == 0)
+            folder = "/tmp";
 
         char fname[14];
-        strncpy(fname, id, 4);
-        strncpy(fname+4, "_diff.txt", 10);
-        createFile(fname);
-        diff.open(fname);
+        int len = strlen(folder);
 
-        strncpy(fname+4, "_data.txt", 10);
+        strcpy(fname, folder);
+
+        strcpy(fname+len, "/");
+        strncpy(fname+len+1, id, 4);
+
+        strcpy(fname+len+5, "_bigmat_filematrix_data.txt");
         createFile(fname);
         data.open(fname);
+        data.precision(prec);
 
-        strncpy(fname+4, "_prop.txt", 10);
-        createFile(fname);
-        prop.open(fname);
-
-        if(!(diff && data && prop))
+        if(!data){
             std::cerr << "FAILURE" << std::endl;
+            return;
+        }
+
+        T buff = 0;
+        for (unsigned long i = 0; i < _numcell; ++i)
+        {
+            data.write(reinterpret_cast<char*>(&buff), sizeof(T));
+        }
     }
 
     /**
@@ -85,15 +101,9 @@ public:
 
     ~FileMatrix()
     {
-        diff.flush();
         data.flush();
-        prop.flush();
-
-        diff.close();
         data.close();
-        prop.close();
     }
-
 
     /**
         * \fn get
@@ -123,12 +133,12 @@ public:
         data.seekp((x*_width+y)*sizeof(T));
         data.write(reinterpret_cast<char*>(&v), sizeof(T));
     };
-    
+
     /**
         * \fn getWidth()
         * \brief Retourne la largeur de la matrice
+        * \return largeur de la matrice
     */
-
     unsigned int getWidth()
     {
         return _width;
@@ -137,8 +147,8 @@ public:
     /**
         * \fn getHeight()
         * \brief Retourne la hauteur de la matrice
+        * \return Hauteur de la matrice
     */
-
     unsigned int getHeight()
     {
         return _height;
@@ -149,7 +159,6 @@ public:
         * \param width Nouvelle largeur
         * \brief Défini la largeur de la matrice
     */
-
     void setWidth(unsigned int width)
     {
         if(width < getWidth())

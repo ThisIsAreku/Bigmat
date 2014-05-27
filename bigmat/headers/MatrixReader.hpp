@@ -5,7 +5,7 @@
 #include <sstream>
 #include <functional>
 
-#include "matrix/HashMapMatrix.h"
+#include "matrix/HashMapMatrix.hpp"
 
 /**
    * \file MatrixReader.h
@@ -13,6 +13,10 @@
    * \date 13 Mai 2014
 */
 
+/**
+    * \class     MatrixExport
+    * \brief     Importation de matrice
+ */
 class MatrixReader{
 	static void readFile(std::string, std::function<void (unsigned int, unsigned int, std::stringstream&)>);
 public:

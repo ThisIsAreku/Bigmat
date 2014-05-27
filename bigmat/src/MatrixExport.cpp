@@ -1,5 +1,5 @@
 #include <fstream>
-#include "MatrixExport.h"
+#include "MatrixExport.hpp"
 
 /**
    * \file MatrixExport.cpp

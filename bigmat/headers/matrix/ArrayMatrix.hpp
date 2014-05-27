@@ -1,8 +1,6 @@
 #ifndef _ARRAY_MATRIX_
 #define _ARRAY_MATRIX_
-#include "MatrixEngine.h"
-
-template <typename T>
+#include "MatrixEngine.hpp"
 
 /**
    * \file ArrayMatrix.h
@@ -10,6 +8,12 @@ template <typename T>
    * \date 13 Mai 2014
 */
 
+/**
+    * \class     ArrayMatrix
+    * \tparam T  Type de donnée
+    * \brief     Classe de matrice sous la forme de Tableau
+ */
+template <typename T>
 class ArrayMatrix : public MatrixEngine<T>
 {
 private:
@@ -139,11 +143,12 @@ public:
             _matrix[x][y] = v;
     };
 
+
     /**
         * \fn getWidth()
-        * \brief Retourne la largeur de la matrice.
+        * \brief Retourne la largeur de la matrice
+        * \return largeur de la matrice
     */
-
     unsigned int getWidth()
     {
         return _width;
@@ -152,8 +157,8 @@ public:
     /**
         * \fn getHeight()
         * \brief Retourne la hauteur de la matrice
+        * \return Hauteur de la matrice
     */
-
     unsigned int getHeight()
     {
         return _height;
@@ -187,11 +192,10 @@ public:
     };
 
     /**
-        * \fn setWidth()
-        * \param height Entier positif, hauteur a assigner à la matrice
-        * \brief Défini la hauteur de la matrice.
+        * \fn setHeight()
+        * \param height Nouvelle hauteur
+        * \brief Défini la hauteur de la matrice
     */
-
     void setHeight(unsigned int height)
     {
         if(height == getHeight())

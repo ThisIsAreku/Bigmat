@@ -2,9 +2,7 @@
 #define _HASH_MAP_MATRIX_
 
 #include <map>
-#include "MatrixEngine.h"
-
-template <typename T>
+#include "MatrixEngine.hpp"
 
 /**
     * \file      HashMapMatrix.h
@@ -13,6 +11,12 @@ template <typename T>
     * \brief     Classe qui utilise une liste de clée-valeurs. une clée est une struct MatCell(x, y), la valeur est la case de la matrice
  */
 
+/**
+    * \class     HashMapMatrix
+    * \tparam T  Type de donnée
+    * \brief     Classe de matrice sous la forme de HashMap
+ */
+template <typename T>
 class HashMapMatrix : public MatrixEngine<T>
 {
 private:
@@ -110,8 +114,8 @@ public:
     /**
         * \fn getWidth()
         * \brief Retourne la largeur de la matrice
+        * \return largeur de la matrice
     */
-
     unsigned int getWidth()
     {
         return width;
@@ -120,19 +124,19 @@ public:
     /**
         * \fn getHeight()
         * \brief Retourne la hauteur de la matrice
+        * \return Hauteur de la matrice
     */
-
     unsigned int getHeight()
     {
         return height;
     };
+
 
     /**
         * \fn setWidth()
         * \param width Nouvelle largeur
         * \brief Défini la largeur de la matrice
     */
-
     void setWidth(unsigned int width)
     {
         if(width < getWidth())
@@ -153,7 +157,6 @@ public:
         * \param height Nouvelle hauteur
         * \brief Défini la hauteur de la matrice
     */
-        
     void setHeight(unsigned int height)
     {
         if(height < getHeight())

@@ -1,5 +1,5 @@
 #include <fstream>
-#include "MatrixReader.h"
+#include "MatrixReader.hpp"
 
 /**
    * \file MatrixReader.cpp

@@ -4,7 +4,7 @@
 #include <string>
 #include <functional>
 
-#include "matrix/MatrixEngine.h"
+#include "matrix/MatrixEngine.hpp"
 
 /**
    * \file MatrixExport.h
@@ -12,6 +12,10 @@
    * \date 13 Mai 2014
 */
 
+/**
+    * \class     MatrixExport
+    * \brief     Exportation de matrice
+ */
 class MatrixExport{
 	static bool exportFile(std::string, unsigned int, unsigned int, std::function<bool (unsigned int, unsigned int)>, std::function<void (std::ofstream&)>);
 public:
