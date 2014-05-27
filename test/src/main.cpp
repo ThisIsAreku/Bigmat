@@ -1,11 +1,11 @@
 #include <iostream>
 
-#include "MathMatrix.h"
-#include "MatrixReader.h"
-#include "MatrixExport.h"
-#include "matrix/HashMapMatrix.h"
-#include "matrix/ArrayMatrix.h"
-#include "matrix/FileMatrix.h"
+#include "MathMatrix.hpp"
+#include "MatrixReader.hpp"
+#include "MatrixExport.hpp"
+#include "matrix/HashMapMatrix.hpp"
+#include "matrix/ArrayMatrix.hpp"
+#include "matrix/FileMatrix.hpp"
 
 using namespace std;
 
@@ -27,6 +27,18 @@ void dispMat(MatrixEngine<T> *m)
 
 int main()
 {
+
+    cout << "Tests..." << endl;
+
+    cout << "[HashMapMatrix] ";
+    HashMapMatrix<int> hmm;
+    cout << "OK" << endl;
+
+    cout << "[FileMatrix]";
+    FileMatrix<int> fm(5, 5);
+    cout << "OK" << endl;
+    return 0;
+
     //FileMatrix<int> f1(3, 3);
 
     HashMapMatrix<int> m1;
@@ -62,8 +74,6 @@ int main()
     m1 += m2;
     cout << "m1" << endl;
     dispMat(&m1);
-
-    secured = false;
 
     m1 += m2;
     cout << "m1" << endl;
