@@ -140,21 +140,36 @@ int main()
     cout << "OK" << endl;
 
 
-    cout << "FileMatrix huge test" << endl;
+    cout << "ArrayMatrix huge test" << endl;
     cout << "100x100 ";
-    FileMatrix<int> l1(100, 100);
-    fillMat(&l1, 10000);
+    ArrayMatrix<int> lam1(100, 100);
+    fillMat(&lam1, 10000);
     cout << "OK" << endl;
     cout << "1000x1000 ";
-    FileMatrix<int> l2(1000, 1000);
-    fillMat(&l2, 1000000);
+    ArrayMatrix<int> lam2(1000, 1000);
+    fillMat(&lam2, 1000000);
     cout << "OK" << endl;
     cout << "10000x10000 ";
-    FileMatrix<int> l3(10000, 10000);
-    fillMat(&l3, 100000000);
+    ArrayMatrix<int> lam3(10000, 10000);
+    fillMat(&lam3, 100000000);
+    cout << "OK" << endl;
+
+
+    cout << "FileMatrix huge test" << endl;
+    cout << "100x100 ";
+    FileMatrix<int> lfm1(100, 100);
+    fillMat(&lfm1, 10000);
+    cout << "OK" << endl;
+    cout << "1000x1000 ";
+    FileMatrix<int> lfm2(1000, 1000);
+    fillMat(&lfm2, 1000000);
+    cout << "OK" << endl;
+    cout << "10000x10000 ";
+    FileMatrix<int> lfm3(10000, 10000);
+    fillMat(&lfm3, 100000000);
     cout << "OK" << endl;
     cout << "100000x100000 ";
-    FileMatrix<int> l4(100000, 100000);
-    fillMat(&l4, 100000000);
+    FileMatrix<int> lfm4(100000, 100000);
+    fillMat(&lfm4, 100000000);
     cout << "OK" << endl;
 }
