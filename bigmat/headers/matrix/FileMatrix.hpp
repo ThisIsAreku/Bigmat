@@ -30,6 +30,7 @@ private:
     unsigned int _width;
     unsigned int _height;
     unsigned long _numcell;
+    std::streamsize _prec;
 
     void createFile(const char *name)
     {
@@ -68,7 +69,7 @@ private:
         strcpy(fname + len + 5, "_bigmat_filematrix_data.txt");
         createFile(fname);
         data.open(fname);
-        data.precision(prec);
+        data.precision(_prec);
 
         if(!data)
         {
@@ -94,6 +95,7 @@ public:
     */
     FileMatrix(unsigned int width, unsigned int height, std::streamsize prec = 4)
     {
+        _prec = prec;
         _width = width;
         _height = height;
     }
@@ -103,8 +105,9 @@ public:
         * \param a Reference d'une MatrixEngine<T>
         * \brief Constructeur par recopie depuis une autre Engine.
     */
-    FileMatrix(MatrixEngine<T> &a)
+    FileMatrix(MatrixEngine<T> &a, std::streamsize prec = 4)
     {
+        _prec = prec;
         _width = a.getWidth();
         _height = a.getHeight();
 
