@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 #include "MathMatrix.hpp"
 #include "MatrixReader.hpp"
@@ -34,95 +36,101 @@ int main()
     HashMapMatrix<int> hmm;
     cout << "OK" << endl;
 
-    cout << "[FileMatrix]";
+    cout << "[ArrayMatrix] ";
+    ArrayMatrix<int> am(5, 5);
+    cout << "OK" << endl;
+
+    cout << "[FileMatrix] ";
     FileMatrix<int> fm(5, 5);
     cout << "OK" << endl;
-    return 0;
 
-    //FileMatrix<int> f1(3, 3);
+    cout << "[HashMapMatrix] Set";
+    hmm.set(1, 1, 200);
+    hmm.set(0, 0, 200);
+    hmm.set(2, 0, 3);
+    hmm.set(2, 1, 200);
+    hmm.set(2, 0, 2);
+    hmm.set(1, 0, 2);
+    hmm.set(4, 4, 5);
+    cout << "OK" << endl;
 
-    HashMapMatrix<int> m1;
-    HashMapMatrix<int> m2;
+    cout << "[ArrayMatrix] Set ";
+    am.set(1, 1, 200);
+    am.set(0, 0, 200);
+    am.set(2, 0, 3);
+    am.set(2, 1, 200);
+    am.set(2, 0, 2);
+    am.set(1, 0, 2);
+    am.set(4, 4, 5);
+    cout << "OK" << endl;
 
-    ArrayMatrix<int> a1(3, 3);
+    cout << "[FileMatrix] Set";
+    fm.set(1, 1, 200);
+    fm.set(0, 0, 200);
+    fm.set(2, 0, 3);
+    fm.set(2, 1, 200);
+    fm.set(2, 0, 2);
+    fm.set(1, 0, 2);
+    fm.set(4, 4, 5);
+    cout << "OK" << endl;
 
-    m1.set(0, 0, 1);
-    m1.set(1, 0, 2);
-    m1.set(2, 0, 3);
-    m1.set(2, 2, 5);
+    cout << "[ArrayMatrix] randomset";
+    ArrayMatrix<int> amr(5, 5);
+    int n = 0;
+    srand(time(NULL));
+    while(n < 100)
+    {
+        amr.set(rand() % 5, rand() % 5, rand() % 128);
+        n++;
+    }
+    cout << "OK" << endl;
 
-    m2.set(0, 0, 12);
-    m2.set(1, 0, 75);
-    m2.set(2, 0, 8);
-    m2.set(2, 1, 5);
-    //m2.set(2, 2, 12);
+    cout << "[HashMapMatrix] Result" << endl;
+    dispMat(&hmm);
+    cout << "OK" << endl;
 
-    a1.set(1, 1, 200);
-    a1.set(0, 0, 200);
-    a1.set(2, 1, 200);
-    //a1.set(4, 4, 5);
+    cout << "[ArrayMatrix] Result" << endl;
+    dispMat(&am);
+    cout << "OK" << endl;
 
-    cout << "a1" << endl;
-    dispMat(&a1);
-
-    cout << "m1" << endl;
-    dispMat(&m1);
-
-    cout << "m2" << endl;
-    dispMat(&m2);
-
-    m1 += m2;
-    cout << "m1" << endl;
-    dispMat(&m1);
-
-    m1 += m2;
-    cout << "m1" << endl;
-    dispMat(&m1);
-
-    m2 += m1;
-    cout << "m2" << endl;
-    dispMat(&m2);
-
-    m2 += a1;
-    cout << "m2" << endl;
-    dispMat(&m2);
+    cout << "[ArrayMatrix] random Result" << endl;
+    dispMat(&amr);
+    cout << "OK" << endl;
 
 
-    HashMapMatrix<int> m3(m2);
-    cout << "recopie m3 = m2" << endl;
-    dispMat(&m3);
+    cout << "[FileMatrix] Result" << endl;
+    dispMat(&fm);
+    cout << "OK" << endl;
 
-    ArrayMatrix<int> a2(a1);
-    cout << "recopie a2 = a1" << endl;
+
+    cout << "[HashMapMatrix] += [ArrayMatrix]" << endl;
+    hmm += am;
+    dispMat(&hmm);
+    cout << "OK" << endl;
+
+    cout << "[HashMapMatrix] -= [ArrayMatrix]" << endl;
+    hmm -= am;
+    dispMat(&hmm);
+    cout << "OK" << endl;
+
+    cout << "[FileMatrix] *= 2" << endl;
+    fm *= 2;
+    dispMat(&fm);
+    cout << "OK" << endl;
+
+    cout << "[HashMapMatrix] += [ArrayMatrix]-random" << endl;
+    hmm += amr;
+    dispMat(&hmm);
+    cout << "OK" << endl;
+
+
+    cout << "[FileMatrix] = [HashMapMatrix]" << endl;
+    FileMatrix<int> fm2(hmm);
+    dispMat(&fm2);
+    cout << "OK" << endl;
+
+    cout << "[ArrayMatrix] = [FileMatrix]" << endl;
+    ArrayMatrix<int> a2(fm2);
     dispMat(&a2);
-
-    ArrayMatrix<int> a3(m3);
-    cout << "recopie a3 = m3" << endl;
-    dispMat(&a3);
-
-
-    HashMapMatrix<long> im1;
-    cout << "im1 long" << endl;
-    MatrixReader::readLongMatrix("mat.dat", &im1);
-    dispMat(&im1);
-
-    im1 += im1;
-
-
-    cout << "write long" << endl;
-    MatrixExport::exportLongMatrix("mat_out.dat", &im1);
-    cout << "write int" << endl;
-    MatrixExport::exportIntMatrix("mat_out2.dat", &a3);
-
-
-    cout << "File mat" << endl;
-    FileMatrix<int> fmat(5, 5);
-    fmat.set(0, 0, 5);
-    fmat.set(0, 3, 10);
-    fmat.set(0, 0, 6);
-    dispMat(&fmat);
-    fmat.set(4, 4, 125);
-    fmat.set(3, 4, 1);
-    fmat.set(2, 2, 65535);
-    dispMat(&fmat);
+    cout << "OK" << endl;
 }
