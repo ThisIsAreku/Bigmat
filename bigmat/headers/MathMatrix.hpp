@@ -35,7 +35,8 @@ public:
     * \fn +=
     * \param a Matrice a
     * \param b Matrice b
-    * \brief Constructeur du FileMatrix.
+    * \brief Spécification du template pour les matrices booléenes
+    * \return Matrice a modifiée
 */
 MatrixEngine<bool> &operator +=(MatrixEngine<bool> &a, MatrixEngine<bool> &b)
 {
@@ -50,6 +51,13 @@ MatrixEngine<bool> &operator +=(MatrixEngine<bool> &a, MatrixEngine<bool> &b)
     return a;
 }
 
+/**
+    * \fn +=
+    * \tparam Type de matrice
+    * \param a Matrice a
+    * \param b Matrice b
+    * \return Matrice a modifiée
+*/
 template <typename K>
 MatrixEngine<K> &operator +=(MatrixEngine<K> &a, MatrixEngine<K> &b)
 {
@@ -65,11 +73,26 @@ MatrixEngine<K> &operator +=(MatrixEngine<K> &a, MatrixEngine<K> &b)
     return a;
 }
 
+/**
+    * \fn -=
+    * \param a Matrice a
+    * \param b Matrice b
+    * \brief Spécification du template pour les matrices booléenes
+    * \return Matrice a modifiée
+*/
 MatrixEngine<bool> &operator -=(MatrixEngine<bool> &a, MatrixEngine<bool> &b)
 {
     return a;
 }
 
+
+/**
+    * \fn -=
+    * \tparam Type de matrice
+    * \param a Matrice a
+    * \param b Matrice b
+    * \return Matrice a modifiée
+*/
 template <typename K>
 MatrixEngine<K> &operator -=(MatrixEngine<K> &a, MatrixEngine<K> &b)
 {
@@ -85,7 +108,14 @@ MatrixEngine<K> &operator -=(MatrixEngine<K> &a, MatrixEngine<K> &b)
     return a;
 }
 
-
+/**
+    * \fn *=
+    * \tparam Type de matrice
+    * \param a Matrice a
+    * \param number Nombre multiplicateur
+    * \brief Multiplie une matrice par un nombre
+    * \return Matrice a modifiée
+*/
 template <typename K>
 MatrixEngine<K> &operator *=(MatrixEngine<K> &a, int number)
 {
@@ -100,7 +130,13 @@ MatrixEngine<K> &operator *=(MatrixEngine<K> &a, int number)
     return a;
 }
 
-
+/**
+    * \fn *=
+    * \param a Matrice a
+    * \param b Matrice b
+    * \brief Spécification du template pour les matrices booléenes
+    * \return Matrice a modifiée
+*/
 MatrixEngine<bool> &operator *=(MatrixEngine<bool> &a, MatrixEngine<bool> &b){
     unsigned int maxWidth = b.getWidth();
     unsigned int maxHeight = a.getHeight();
@@ -124,6 +160,14 @@ MatrixEngine<bool> &operator *=(MatrixEngine<bool> &a, MatrixEngine<bool> &b){
     return a;
 }
 
+/**
+    * \fn *=
+    * \tparam Type de matrice
+    * \param a Matrice a
+    * \param b Matrice b
+    * \brief Multiplie deux matrices
+    * \return Matrice a modifiée
+*/
 template <typename K>
 MatrixEngine<K> &operator *=(MatrixEngine<K> &a, MatrixEngine<K> &b){
     unsigned int maxWidth = b.getWidth();
@@ -148,18 +192,39 @@ MatrixEngine<K> &operator *=(MatrixEngine<K> &a, MatrixEngine<K> &b){
     return a;
 }
 
+
+/**
+    * \fn /=
+    * \param a Matrice a
+    * \param b Matrice b
+    * \brief Spécification du template pour les matrices booléenes
+    * \return Matrice a modifiée
+*/
 MatrixEngine<bool> &operator /=(MatrixEngine<bool> &a, MatrixEngine<bool> &b){    
     return a;
 }
 
-
-
+/**
+    * \fn /=
+    * \tparam Type de matrice
+    * \param a Matrice a
+    * \param b Matrice b
+    * \brief Divise deux matrices
+    * \return Matrice a modifiée
+*/
 template <typename K>
 MatrixEngine<K> &operator /=(MatrixEngine<K> &a, MatrixEngine<K> &b){ 
     a *= MathMatrix::inversion(b);    
     return a;
 }
-   
+
+/**
+    * \fn inversion
+    * \tparam Type de matrice
+    * \param a Matrice a
+    * \brief Inverse une matrice
+    * \return Matrice a modifiée
+*/  
 template <typename K>
 MatrixEngine<K> MathMatrix::inversion(MatrixEngine<K> &a){
     
@@ -172,6 +237,13 @@ MatrixEngine<K> MathMatrix::inversion(MatrixEngine<K> &a){
     return a;
 }
 
+/**
+    * \fn complementAlgebrique
+    * \tparam Type de matrice
+    * \param a Matrice a
+    * \brief Complement algebrique d'une matrice
+    * \return Matrice a modifiée
+*/ 
 template <typename K>
 MatrixEngine<K> MathMatrix::complementAlgebrique(MatrixEngine<K> &a){
     
@@ -179,6 +251,13 @@ MatrixEngine<K> MathMatrix::complementAlgebrique(MatrixEngine<K> &a){
     return a;
 }
 
+/**
+    * \fn transpose
+    * \tparam Type de matrice
+    * \param a Matrice a
+    * \brief Inverse une matrice
+    * \return Matrice a modifié
+*/ 
 template <typename K>
 MatrixEngine<K> MathMatrix::transpose(MatrixEngine<K> &a){
     
@@ -186,7 +265,14 @@ MatrixEngine<K> MathMatrix::transpose(MatrixEngine<K> &a){
     
     return a;
 }
-  
+
+/**
+    * \fn det
+    * \tparam Type de matrice
+    * \param a Matrice a
+    * \brief Calcul de déterminant de la matrice
+    * \return déterminant
+*/ 
 template <typename K>
 int MathMatrix::det(MatrixEngine<K> &a){
     int det = a.get(0, 0);
