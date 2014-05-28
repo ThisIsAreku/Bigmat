@@ -33,7 +33,7 @@ private:
         for (unsigned int i = 0; i < _width; ++i)
         {
             _matrix[i] = _data + (i * _height);
-        } 
+        }
     }
 public:
     ArrayMatrix(unsigned int width, unsigned int height)
@@ -71,7 +71,6 @@ public:
         * \param m Reference d'une autre ArrayMatrix
         * \brief Constructeur par recopie (plus rapide que le constructeur qui suit qui est général).
     */
-
     ArrayMatrix(ArrayMatrix &m)
     {
         _width = m._width;
@@ -87,10 +86,9 @@ public:
 
     /**
         * \fn ArrayMatrix
-        * \param a Reference d'une ArrayEngine
+        * \param a Reference d'une MatrixEngine
         * \brief Constructeur par recopie depuis une autre Engine.
     */
-
     ArrayMatrix(MatrixEngine<T> &a)
     {
         _width = a.getWidth();
@@ -121,7 +119,6 @@ public:
         * \param y Entier, seconde coordonnée de l'adresse
         * \brief Permet de recupèrer une valeur a une adresse donnée.
     */
-    
     T get(unsigned int x, unsigned int y)
     {
         if(x < _width && y < _height)
@@ -135,8 +132,7 @@ public:
         * \param y Entier, seconde coordonnée de l'adresse
         * \param v Nouvelle valeur a donner à l'adresse donnée
         * \brief Permet de modifier la valeur de l'adresse donnée.
-    */  
-    
+    */
     void set(unsigned int x, unsigned int y, T v)
     {
         if(x < _width && y < _height)
@@ -169,7 +165,6 @@ public:
         * \param width Entier positif, largeur a assigner à la matrice
         * \brief Défini la largeur de la matrice.
     */
-
     void setWidth(unsigned int width)
     {
         if(width == getWidth())
@@ -177,7 +172,7 @@ public:
 
         this->_width = width;
 
-        T * newData = new T[_width*_height];
+        T *newData = new T[_width * _height];
         std::copy(newData, newData + (_width * _height), _data);
 
         delete [] _data;
@@ -188,7 +183,7 @@ public:
         for (unsigned int i = 0; i < _width; ++i)
         {
             _matrix[i] = _data + (i * _height);
-        } 
+        }
     };
 
     /**
@@ -202,13 +197,13 @@ public:
             return;
 
         // sauvegarde de l'ancienne matrice
-        T * oldData = new T[_width*_height];
-        T ** ptr_old = new T*[_width];
+        T *oldData = new T[_width * _height];
+        T **ptr_old = new T*[_width];
         std::copy(oldData, oldData + (_width * _height), _data);
         for (unsigned int i = 0; i < _width; ++i)
         {
             ptr_old[i] = oldData + (i * _height);
-        } 
+        }
 
         delete [] _data;
         delete [] _matrix;
