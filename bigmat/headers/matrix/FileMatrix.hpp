@@ -31,6 +31,7 @@ private:
     unsigned int _height;
     unsigned long _numcell;
     std::streamsize _prec;
+    char fname[150];
 
     void createFile(const char *name)
     {
@@ -58,7 +59,6 @@ private:
         if (folder == 0)
             folder = "/tmp";
 
-        char fname[14];
         int len = strlen(folder);
 
         strcpy(fname, folder);
@@ -134,6 +134,7 @@ public:
     {
         data.flush();
         data.close();
+        remove(fname);
     }
 
     /**
