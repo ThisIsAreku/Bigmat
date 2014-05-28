@@ -5,6 +5,8 @@ lib:
 
 test:
 	$(MAKE) -C test
+exectest: lib test
+	$(MAKE) -C test exec
 
 doc:
 	$(MAKE) -C doc
@@ -14,4 +16,5 @@ doc:
 	$(MAKE) -C test $@
 	$(MAKE) -C doc $@
 
-.PHONY: lib test doc clean mrproper
+
+.PHONY: lib test doc %

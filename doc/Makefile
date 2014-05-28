@@ -5,5 +5,6 @@ doc:
 
 clean:
 	rm -rf html
+mrproper: clean
 
-.PHONY: clean
+.PHONY: clean mrproper

@@ -16,7 +16,7 @@ MINOR	= 1
 VERSION = $(MAJOR).$(MINOR)
 TARGET	= $(NAME)-$(VERSION)
 SOURCES = $(shell find $(SOURCES_DIR)/ -name "*.cpp")
-HEADERS = $(shell find $(HEADERS_DIR)/ -name "*.h")
+HEADERS = $(shell find $(HEADERS_DIR)/ -name "*.hpp")
 OBJECTS = $(SOURCES:$(SOURCES_DIR)/%.cpp=obj/%.o)
 
 PREFIX = $(DESTDIR)/usr/local
@@ -29,6 +29,9 @@ debug: init compile
 
 build: $(OBJECTS)
 compile: $(TARGET)
+
+exec: all
+	./exec.sh ./bin/$(TARGET)
 
 format:
 	astyle $(HEADERS) $(SOURCES)
