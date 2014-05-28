@@ -31,11 +31,56 @@ private:
     unsigned int _height;
     unsigned long _numcell;
 
-    void createFile(const char* name)
+    void createFile(const char *name)
     {
         std::ofstream tmp(name);
         tmp.flush();
         tmp.close();
+    }
+
+    void allocation()
+    {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<> dis(65, 90);
+        // génération d'un ID à 4 caractères aléatoires
+        for (int i = 0; i < 4; ++i)
+        {
+            id[i] = (char)(dis(gen));
+        }
+        /*
+            Sauvegarde des bornes de la matrice
+        */
+        _numcell = _width * _height;
+
+        char const *folder = getenv("TMPDIR");
+        if (folder == 0)
+            folder = "/tmp";
+
+        char fname[14];
+        int len = strlen(folder);
+
+        strcpy(fname, folder);
+
+        strcpy(fname + len, "/");
+        strncpy(fname + len + 1, id, 4);
+
+        strcpy(fname + len + 5, "_bigmat_filematrix_data.txt");
+        createFile(fname);
+        data.open(fname);
+        data.precision(prec);
+
+        if(!data)
+        {
+            std::cerr << "FAILURE" << std::endl;
+            return;
+        }
+
+        T buff = 0;
+        for (unsigned long i = 0; i < _numcell; ++i)
+        {
+            data.write(reinterpret_cast<char *>(&buff), sizeof(T));
+        }
     }
 
 public:
@@ -47,50 +92,32 @@ public:
         * \param prec Streamsize par défaut égal à 4
         * \brief Constructeur du FileMatrix.
     */
-
     FileMatrix(unsigned int width, unsigned int height, std::streamsize prec = 4)
-    { 
-        std::random_device rd;
-        std::mt19937 gen(rd());
-        std::uniform_int_distribution<> dis(65, 90);
-        // génération d'un ID à 4 caractères aléatoires
-        for (int i = 0; i < 4; ++i)
-        {
-            id[i] = (char)(dis(gen));
-        }
-        /*
-        	Sauvegarde des bornes de la matrice
-        */
+    {
         _width = width;
         _height = height;
-        _numcell = _width*_height;
+    }
 
-        char const *folder = getenv("TMPDIR");
-        if (folder == 0)
-            folder = "/tmp";
+    /**
+        * \fn FileMatrix
+        * \param a Reference d'une MatrixEngine<T>
+        * \brief Constructeur par recopie depuis une autre Engine.
+    */
+    FileMatrix(MatrixEngine<T> &a)
+    {
+        _width = a.getWidth();
+        _height = a.getHeight();
 
-        char fname[14];
-        int len = strlen(folder);
+        allocation();
 
-        strcpy(fname, folder);
-
-        strcpy(fname+len, "/");
-        strncpy(fname+len+1, id, 4);
-
-        strcpy(fname+len+5, "_bigmat_filematrix_data.txt");
-        createFile(fname);
-        data.open(fname);
-        data.precision(prec);
-
-        if(!data){
-            std::cerr << "FAILURE" << std::endl;
-            return;
-        }
-
-        T buff = 0;
-        for (unsigned long i = 0; i < _numcell; ++i)
+        for (unsigned int i = 0; i < a.getWidth(); ++i)
         {
-            data.write(reinterpret_cast<char*>(&buff), sizeof(T));
+            for (unsigned int j = 0; j < a.getHeight(); ++j)
+            {
+                T v = a.get(i, j);
+                if(v != 0)
+                    set(i, j, v);
+            }
         }
     }
 
@@ -98,7 +125,6 @@ public:
         * \fn ~FileMatrix
         * \brief Destructeur du FileMatrix.
     */
-
     ~FileMatrix()
     {
         data.flush();
@@ -111,12 +137,11 @@ public:
         * \param y Entier, seconde coordonnée de l'adresse
         * \brief Permet de recupèrer une valeur a une adresse donnée.
     */
-    
     T get(unsigned int x, unsigned int y)
     {
-        data.seekg((x*_width+y)*sizeof(T));
+        data.seekg((x * _width + y)*sizeof(T));
         T v;
-        data.read(reinterpret_cast<char*>(&v), sizeof(T));
+        data.read(reinterpret_cast<char *>(&v), sizeof(T));
         return v;
     };
 
@@ -126,12 +151,11 @@ public:
         * \param y Entier, seconde coordonnée de l'adresse
         * \param v Nouvelle valeur a donner à l'adresse donnée
         * \brief Permet de modifier la valeur de l'adresse donnée.
-    */  
-
+    */
     void set(unsigned int x, unsigned int y, T v)
     {
-        data.seekp((x*_width+y)*sizeof(T));
-        data.write(reinterpret_cast<char*>(&v), sizeof(T));
+        data.seekp((x * _width + y)*sizeof(T));
+        data.write(reinterpret_cast<char *>(&v), sizeof(T));
     };
 
     /**

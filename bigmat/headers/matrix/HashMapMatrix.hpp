@@ -25,7 +25,6 @@ private:
         * \struct MatCell
         * \brief Structure permettant d'écrire rapidement une coordonné x,y
     */
-
     struct MatCell
     {
         unsigned int x;
@@ -39,7 +38,6 @@ private:
         * \true si a doit etre avant b
         * \false si b doit etre avant a
     */
-
     class compareKeyPair
     {
     public:
@@ -64,8 +62,25 @@ public:
         * \fn HashMapMatrix()
         * \brief Constructeur initialisant les dimensions à 0
     */
-
     HashMapMatrix() : width(0), height(0) {};
+
+    /**
+        * \fn FileMatrix
+        * \param a Reference d'une MatrixEngine<T>
+        * \brief Constructeur par recopie depuis une autre Engine.
+    */
+    HashMapMatrix(MatrixEngine<T> &a) : width(0), height(0)
+    {
+        for (unsigned int i = 0; i < a.getWidth(); ++i)
+        {
+            for (unsigned int j = 0; j < a.getHeight(); ++j)
+            {
+                T v = a.get(i, j);
+                if(v != 0)
+                    set(i, j, v);
+            }
+        }
+    }
 
     /**
         * \fn get
@@ -74,7 +89,6 @@ public:
         * \brief Permet de recupèrer la case à l'index donné.
         * \details Renvoit 0 si vide ou hors limite
     */
-
     T get(unsigned int x, unsigned int y)
     {
         return _matrix[MatCell(x, y)];
@@ -88,7 +102,6 @@ public:
         * \brief Défini la case à l'index donné à la valeur v
         * \details Agrandit la taille stockée si l'index est plus grand (extensible)
     */
-
     void set(unsigned int x, unsigned int y, T v)
     {
         if(x + 1 > width)

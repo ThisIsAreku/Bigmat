@@ -32,7 +32,7 @@ private:
     unsigned int _width;
     unsigned int _height;
 
-    void createFile(const char* name)
+    void createFile(const char *name)
     {
         std::ofstream tmp(name);
         tmp.flush();
@@ -47,9 +47,8 @@ public:
         * \param height Entier désignant la hauteur
         * \brief Constructeur du OptimizedFileMatrix.
     */
-
     OptimizedFileMatrix(unsigned int width, unsigned int height)
-    { 
+    {
         std::random_device rd;
         std::mt19937 gen(rd());
         std::uniform_int_distribution<> dis(65, 90);
@@ -66,15 +65,15 @@ public:
 
         char fname[14];
         strncpy(fname, id, 4);
-        strncpy(fname+4, "_diff.txt", 10);
+        strncpy(fname + 4, "_diff.txt", 10);
         createFile(fname);
         diff.open(fname);
 
-        strncpy(fname+4, "_data.txt", 10);
+        strncpy(fname + 4, "_data.txt", 10);
         createFile(fname);
         data.open(fname);
 
-        strncpy(fname+4, "_prop.txt", 10);
+        strncpy(fname + 4, "_prop.txt", 10);
         createFile(fname);
         prop.open(fname);
 
@@ -86,7 +85,6 @@ public:
         * \fn ~OptimizedFileMatrix
         * \brief Destructeur du OptimizedFileMatrix.
     */
-
     ~OptimizedFileMatrix()
     {
         diff.flush();
@@ -105,12 +103,11 @@ public:
         * \param y Entier, seconde coordonnée de l'adresse
         * \brief Permet de recupèrer une valeur a une adresse donnée.
     */
-    
     T get(unsigned int x, unsigned int y)
     {
-        data.seekg((x*_width+y)*sizeof(T));
+        data.seekg((x * _width + y)*sizeof(T));
         T v;
-        data.read(reinterpret_cast<char*>(&v), sizeof(T));
+        data.read(reinterpret_cast<char *>(&v), sizeof(T));
         return v;
     };
 
@@ -120,12 +117,11 @@ public:
         * \param y Entier, seconde coordonnée de l'adresse
         * \param v Nouvelle valeur a donner à l'adresse donnée
         * \brief Permet de modifier la valeur de l'adresse donnée.
-    */  
-
+    */
     void set(unsigned int x, unsigned int y, T v)
     {
-        data.seekp((x*_width+y)*sizeof(T));
-        data.write(reinterpret_cast<char*>(&v), sizeof(T));
+        data.seekp((x * _width + y)*sizeof(T));
+        data.write(reinterpret_cast<char *>(&v), sizeof(T));
     };
 
     /**
