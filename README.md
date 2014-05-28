@@ -9,7 +9,7 @@ Une matrice de _short_ utilisera moins de mémoire qu'une matrice de type _long_
 Les opérations de base ont été implémentés sous la forme de surcharge d'opérateurs.
 Cela signifie que vous pouvez utiliser les opérateurs +=, -= *= et /= sur les matrices.
 Pour des raisons d'espace mémoire, les opérateurs +, -, * et / n'ont pas été implémentés car ils nécessitent de cloner la matrice.
-Ces opérations sont implémentés dans le header **MathMatrix**.
+Ces opérations sont implémentés dans le header **MathMatrix** .
 
 
 ### Formatage des données
