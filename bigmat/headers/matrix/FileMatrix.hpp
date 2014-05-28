@@ -98,6 +98,8 @@ public:
         _prec = prec;
         _width = width;
         _height = height;
+
+        allocation();
     }
 
     /**
