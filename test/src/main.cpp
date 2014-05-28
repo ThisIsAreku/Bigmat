@@ -27,9 +27,20 @@ void dispMat(MatrixEngine<T> *m)
     cout << endl;
 }
 
+void fillMat(MatrixEngine<int> *m, int iter)
+{
+    int n = 0;
+    while(n < iter)
+    {
+        m->set(rand() % m->getWidth(), rand() % m->getHeight(), rand() % 128);
+        n++;
+    }
+}
+
 int main()
 {
 
+    srand(time(NULL));
     cout << "Tests..." << endl;
 
     cout << "[HashMapMatrix] ";
@@ -76,13 +87,7 @@ int main()
 
     cout << "[ArrayMatrix] randomset";
     ArrayMatrix<int> amr(5, 5);
-    int n = 0;
-    srand(time(NULL));
-    while(n < 100)
-    {
-        amr.set(rand() % 5, rand() % 5, rand() % 128);
-        n++;
-    }
+    fillMat(&amr, 100);
     cout << "OK" << endl;
 
     cout << "[HashMapMatrix] Result" << endl;
@@ -132,5 +137,24 @@ int main()
     cout << "[ArrayMatrix] = [FileMatrix]" << endl;
     ArrayMatrix<int> a2(fm2);
     dispMat(&a2);
+    cout << "OK" << endl;
+
+
+    cout << "FileMatrix huge test" << endl;
+    cout << "100x100 ";
+    FileMatrix<int> l1(100, 100);
+    fillMat(&l1, 10000);
+    cout << "OK" << endl;
+    cout << "1000x1000 ";
+    FileMatrix<int> l2(1000, 1000);
+    fillMat(&l2, 1000000);
+    cout << "OK" << endl;
+    cout << "10000x10000 ";
+    FileMatrix<int> l3(10000, 10000);
+    fillMat(&l3, 100000000);
+    cout << "OK" << endl;
+    cout << "100000x100000 ";
+    FileMatrix<int> l4(100000, 100000);
+    fillMat(&l4, 100000000);
     cout << "OK" << endl;
 }
