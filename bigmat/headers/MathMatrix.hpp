@@ -267,7 +267,7 @@ MatrixEngine<K> MathMatrix::inversion(MatrixEngine<K> &a)
 template <typename K>
 MatrixEngine<K> MathMatrix::complementAlgebrique(MatrixEngine<K> &a)
 {
-
+    
 
     return a;
 }
